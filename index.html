@@ -4,33 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07130d">
-  <meta name="description" content="Complete documentation for SPA Material Baker V3 for Unreal Engine.">
-  <title>SPA Material Baker V3 — Documentation</title>
-  <link rel="icon" href="assets/favicon.ico">
+  <meta name="description" content="Material and lighting baking, decals, mesh optimization and scene asset export in SPA Materials Baker V3.1 for Unreal Engine.">
+  <title>SPA Materials Baker V3.1 — Materials, Lighting &amp; Scene Assets</title>
+  <link rel="icon" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#top"><span class="logo">S</span><span><b>SPA Material Baker</b><small>V3 Documentation</small></span></a>
+    <a class="brand" href="#top"><span><b>SPA Materials Baker</b><small>V3.1 Documentation</small></span></a>
     <button class="menu" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button>
   </header>
 
   <aside class="sidebar" aria-label="Documentation navigation">
     <p class="nav-title">Documentation</p>
-    <nav>
-      <a href="#overview">Overview</a>
-      <a href="#features">Features</a>
-      <a href="#quick-start">Quick start</a>
-      <a href="#deep-dives">Detailed guides</a>
-      <a href="#bake-options">Bake Options</a>
-      <a href="#mesh-settings">Mesh Settings</a>
-      <a href="#material-settings">Material Settings</a>
-      <a href="#bake-settings">Bake Settings</a>
-      <a href="#passes">Output passes</a>
-      <a href="#decals">Decal baking</a>
-      <a href="#export">Export & naming</a>
-      <a href="#troubleshooting">Troubleshooting</a>
-    </nav>
+    <nav><a href="#overview">Overview</a>
+<a href="#features">Features</a>
+<a href="#presets" class="nav-option">Presets</a>
+<a href="#bake-options" class="nav-option">Bake Tools</a>
+<a href="#mesh-settings" class="nav-option">Mesh Settings</a>
+<a href="#material-settings" class="nav-option">Material Settings</a>
+<a href="#bake-settings" class="nav-option">Bake Settings</a>
+<a href="#lighting-settings" class="nav-option">Lighting &amp; Shadows</a>
+<a href="#export" class="nav-option">Export &amp; naming</a>
+<a href="#troubleshooting">Troubleshooting</a>
+<a href="#use-cases">What is it useful for?</a>
+</nav>
     <div class="sidebar-meta">
       <div class="sidebar-links" aria-label="SPA Materials Baker external links">
         <a href="https://www.linkedin.com/in/ali-shantia/" target="_blank" rel="noopener noreferrer">LinkedIn <span>&nearr;</span></a>
@@ -43,410 +41,337 @@
   </aside>
 
   <main id="top">
-    <section class="hero split-hero" id="overview">
-      <div class="hero-copy">
-        <p class="eyebrow">The complete field guide</p>
-        <h1>Turn complex materials into <em>production-ready textures.</em></h1>
-        <p class="lead">A practical guide to every workflow, setting, pass, optimization tool, decal option, and output rule in SPA Material Baker V3.</p>
-        <div class="actions"><a class="button primary" href="#quick-start">Start your first bake ↓</a><a class="button outline" href="#bake-options">Browse all controls</a></div>
-        <div class="facts"><span><b>12</b>output passes</span><span><b>6</b>guided workflows</span><span><b>Ctrl + F</b>open the baker</span></div>
+    <section class="hero scene-hero" id="overview" aria-label="SPA Materials Baker scene features">
+      <div class="product-heading"><h1>SPA Materials Baker <span>V3.1</span></h1><p><span>Bake scene lighting, post-process &amp; decals into textures</span><small>Bake textures &amp; scene lighting. Flatten decals &amp; overlays. Build UV atlases. Export GLB.</small></p></div>
+      <div class="header-slider" data-header-slider role="region" aria-roledescription="carousel" aria-label="Baking scene examples" tabindex="0">
+        <!-- Add another figure with data-header-slide and data-title here. Controls are generated automatically. -->
+      <figure class="scene-figure" data-header-slide data-title="Lighting &amp; shadows" aria-label="Lighting and shadows scene">
+        <div class="scene-stage">
+          <img class="scene-shot" src="assets/scene-baking-header.webp" width="2560" height="1368" alt="Unreal Engine scene with warm and blue lighting, cast gate and foliage shadows, wall decals, mesh overlays and a stone staircase" fetchpriority="high">
+          <svg class="scene-leaders" viewBox="0 0 1550 970" fill="none" aria-hidden="true">
+            <path d="M230 128V215L420 320" />
+            <path d="M860 118V190L910 270" />
+            <path d="M1345 190V280L1335 380" />
+            <path d="M185 875V780L400 645" />
+            <path d="M775 875L600 815L410 750" />
+            <path d="M1330 875V785L1080 665" />
+          </svg>
+          <a class="scene-pin pin-light" href="#lighting-settings" aria-label="1. Scene lighting">1</a>
+          <a class="scene-pin pin-nanite" href="#mesh-settings" aria-label="6. Complex Nanite meshes">6</a>
+          <a class="scene-pin pin-emissive" href="#lighting-settings" aria-label="2. Emissive surfaces">2</a>
+          <a class="scene-pin pin-decal" href="#decals" aria-label="3. Decal baking">3</a>
+          <a class="scene-pin pin-shadow" href="#lighting-settings" aria-label="4. Cast shadows">4</a>
+          <a class="scene-pin pin-overlay" href="#decals" aria-label="5. Mesh overlays">5</a>
+        </div>
+        <figcaption class="scene-callouts">
+          <a class="scene-callout label-light" href="#lighting-settings"><span class="callout-number">01</span><span><b>Scene lighting</b><small>Point, directional &amp; indirect lighting</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout label-emissive" href="#lighting-settings"><span class="callout-number">02</span><span><b>Emissive surfaces</b><small>Include their rendered appearance</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout label-decal" href="#decals"><span class="callout-number">03</span><span><b>Decal baking</b><small>Flatten projected material detail</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout label-shadow" href="#lighting-settings"><span class="callout-number">04</span><span><b>Cast shadows</b><small>Keep the scene’s lighting character</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout label-overlay" href="#decals"><span class="callout-number">05</span><span><b>Mesh overlays</b><small>Bake puddles &amp; surface cards</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout label-nanite" href="#mesh-settings"><span class="callout-number">06</span><span><b>Complex Nanite meshes</b><small>Detailed geometry &amp; displacement</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+        </figcaption>
+      </figure>
+      <figure class="scene-figure restroom-slide" data-header-slide data-title="Restroom materials &amp; lighting" aria-label="Restroom materials and lighting scene" hidden>
+        <div class="scene-stage">
+          <img class="scene-shot restroom-shot" src="assets/scene-restroom-header.webp" alt="Unreal Engine restroom with ceiling and floor decals, two-sided curtains, wall lights and floor reflections" loading="lazy" decoding="async">
+          <svg class="scene-leaders" viewBox="0 0 1550 970" fill="none" aria-hidden="true">
+            <path d="M1345 190V270L1313 340" />
+            <path d="M385 465L426 524" />
+            <path d="M740 110V145H339V204M668 145V213M741 145V218" />
+            <path d="M1330 875L1250 785" />
+            <path d="M775 875L1032 791" />
+          </svg>
+          <a class="scene-pin rest-pin-light" href="#lighting-settings" aria-label="1. Scene lighting at the right wall light">1</a>
+          <a class="scene-pin rest-pin-two-sided" href="#feature-two-sided" aria-label="2. Two-sided curtain materials">2</a>
+          <a class="scene-pin rest-pin-decal" href="#decals" aria-label="3. Ceiling decals">3</a>
+          <a class="scene-pin rest-pin-reflection" href="#lighting-settings" aria-label="4. Floor reflections">4</a>
+          <a class="scene-pin rest-pin-floor-decal" href="#decals" aria-label="5. Floor decal">5</a>
+        </div>
+        <figcaption class="scene-callouts">
+          <a class="scene-callout rest-label-light" href="#lighting-settings"><span class="callout-number">01</span><span><b>Scene lighting</b><small>Capture the room’s lighting</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout rest-label-two-sided" href="#feature-two-sided"><span class="callout-number">02</span><span><b>Two-sided materials</b><small>Render both sides of the curtains</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout rest-label-decal" href="#decals"><span class="callout-number">03</span><span><b>Ceiling decals</b><small>Bake projected surface details</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout rest-label-reflection" href="#lighting-settings"><span class="callout-number">04</span><span><b>Reflections</b><small>Capture the reflective floor appearance</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout rest-label-floor-decal" href="#decals"><span class="callout-number">05</span><span><b>Floor decals</b><small>Flatten dirt &amp; surface marks</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+        </figcaption>
+      </figure>
+      <figure class="scene-figure house-slide" data-header-slide data-title="House materials &amp; opacity masks" aria-label="House material passes, opacity masks and multiple material indices" hidden>
+        <div class="scene-stage">
+          <img class="scene-shot house-shot" src="assets/scene-House-header.webp" alt="Brick and plaster house facade with a wooden balcony, metal brackets and torn masked fabric draped over the railing" loading="lazy" decoding="async">
+          <svg class="scene-leaders" viewBox="0 0 1550 970" fill="none" aria-hidden="true">
+            <path d="M1070 165H990L830 214" />
+            <path d="M1120 435H1040L964 473" />
+            <path d="M1070 720H810L720 580L607 460" />
+          </svg>
+          <a class="scene-pin house-pin-passes" href="#passes" aria-label="1. Full material passes on the wall">1</a>
+          <a class="scene-pin house-pin-mask" href="#feature-rgba-opacity" aria-label="2. Opacity masks on the torn fabric">2</a>
+          <a class="scene-pin house-pin-indices" href="#mesh-settings" aria-label="3. Multiple material indices on the balcony">3</a>
+        </div>
+        <figcaption class="scene-callouts">
+          <a class="scene-callout house-label-passes" href="#passes"><span class="callout-number">01</span><span><b>Full material passes</b><small>Base Color, Normal, ORM &amp; more</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout house-label-mask" href="#feature-rgba-opacity"><span class="callout-number">02</span><span><b>Opacity masks</b><small>Preserve masked fabric edges</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout house-label-indices" href="#mesh-settings"><span class="callout-number">03</span><span><b>Multiple material indices</b><small>Bake individual or all material slots</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+        </figcaption>
+      </figure>
+      <figure class="scene-figure statue-slide" data-header-slide data-title="Statue surfaces &amp; texture output" aria-label="Statue detail, scene lighting, UV layout and baked texture output" hidden>
+        <div class="scene-stage">
+          <img class="scene-shot statue-shot" src="assets/scene-Statue-header.webp" alt="Two detailed winged statues in Unreal Engine beside UV layout and baked Base Color texture editor panels" loading="lazy" decoding="async">
+          <svg class="scene-leaders" viewBox="0 0 1550 970" fill="none" aria-hidden="true">
+            <path d="M260 115V185L454 359" />
+            <path d="M700 115V400L677 525" />
+            <path d="M1030 115L1170 185L1385 283" />
+            <path d="M1030 840L1250 780L1343 722" />
+          </svg>
+          <a class="scene-pin statue-pin-detail" href="#mesh-settings" aria-label="1. Complex surface detail on the statue">1</a>
+          <a class="scene-pin statue-pin-light" href="#lighting-settings" aria-label="2. Scene lighting">2</a>
+          <a class="scene-pin statue-pin-uv" href="#uv-details" aria-label="3. UV layout">3</a>
+          <a class="scene-pin statue-pin-texture" href="#passes" aria-label="4. Baked texture output">4</a>
+        </div>
+        <figcaption class="scene-callouts">
+          <a class="scene-callout statue-label-detail" href="#mesh-settings"><span class="callout-number">01</span><span><b>Complex surface detail</b><small>Bake across sculpted mesh surfaces</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout statue-label-light" href="#lighting-settings"><span class="callout-number">02</span><span><b>Scene lighting</b><small>Capture the illuminated appearance</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout statue-label-uv" href="#uv-details"><span class="callout-number">03</span><span><b>UV layout</b><small>Bake into the selected UV channel</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+          <a class="scene-callout statue-label-texture" href="#passes"><span class="callout-number">04</span><span><b>Baked texture output</b><small>Inspect the exported Base Color atlas</small></span><span class="callout-arrow" aria-hidden="true">↗</span></a>
+        </figcaption>
+      </figure>
+        <div class="header-slider-controls" hidden>
+          <span class="header-slide-title" aria-live="polite" aria-atomic="true"></span>
+          <div class="header-slider-navigation">
+            <button class="header-prev" type="button" aria-label="Previous header image">&#8592;</button>
+            <div class="header-slider-dots" aria-label="Choose a header image"></div>
+            <button class="header-next" type="button" aria-label="Next header image">&#8594;</button>
+          </div>
+        </div>
       </div>
-      <figure class="hero-image generated-hero-image">
-        <figcaption><i></i>SPA Material Baker V3 · Complete Guide</figcaption>
-        <img src="assets/spa-material-baker-banner.png" alt="SPA Material Baker V3 Complete Guide artwork showing a layered material sphere and baked texture channels">
-      </figure>
     </section>
 
-    <section class="requirements">
-      <div><span>01</span><b>Editor plugin</b><small>Runs inside Unreal Editor</small></div>
-      <div><span>02</span><b>/Game assets</b><small>Required for source and output</small></div>
-      <div><span>03</span><b>Mesh UVs</b><small>Always used by V3</small></div>
-      <div><span>04</span><b>GLTF Exporter</b><small>Used for GLB output</small></div>
-    </section>
-
-    <section class="section features-section" id="features">
-      <header class="section-head features-head"><div><p class="eyebrow">Complete capability overview</p><h2>Baker features</h2></div><div class="features-intro"><p>Everything available in SPA Material Baker V3, grouped into one quick reference. Orange cards marked <strong>New in this version</strong> identify only the latest additions and changed behavior.</p><span class="new-version-key">New in this version</span></div></header>
-      <figure class="latest-interface">
-        <div><p class="eyebrow">Latest baker interface</p><h3>All major controls in one editor panel</h3><p>The current interface brings Bake Options, Mesh Settings, Material Settings, Bake Settings, texture passes, Light Data, decal controls, and export naming into one workflow.</p><a href="assets/spa-material-baker-interface-latest.png">Open full-size interface ↗</a></div>
-        <a class="interface-image-link" href="assets/spa-material-baker-interface-latest.png" aria-label="Open the latest SPA Material Baker interface at full size"><img src="assets/spa-material-baker-interface-latest.png" alt="Latest SPA Materials Baker V3 interface showing bake options, mesh and material settings, output passes, Light Data, decal baking, and export naming controls"></a>
-      </figure>
-      <div class="features-grid">
-        <article class="feature-card is-new" id="feature-scene-workflow">
-          <span class="feature-status">New in this version</span>
-          <h3>Scene-based mesh selection</h3>
-          <p>Select the Static Mesh or Skeletal Mesh actor/component from the Level Editor. The scene target supplies its real transform, component overrides, and data for World Space Correction and Light Data traces.</p>
-          <a href="#quick-start">Updated workflow ↓</a>
-        </article>
-        <article class="feature-card is-new" id="feature-material-resolution">
-          <span class="feature-status">New in this version</span>
-          <h3>Mesh material resolution</h3>
-          <p>Leave the panel Material empty to use the selected component's Material Index slot, followed by the mesh asset slot. Select a panel Material when the slot is empty or when an intentional override is needed.</p>
-          <a href="#baking-rules">Material rules ↓</a>
-        </article>
-        <article class="feature-card is-new" id="feature-pixel-cover">
-          <span class="feature-status">New in this version</span>
-          <h3>Exact Pixel Cover control</h3>
-          <p>Choose 0–64 pixels with a default of 3. Values 1–64 apply an exact dilation distance; 0 provides unlimited coverage for regular baked textures.</p>
-          <a href="#pixel-cover-details">Pixel Cover guide ↓</a>
-        </article>
-        <article class="feature-card is-new" id="feature-light-data">
-          <span class="feature-status">New in this version</span>
-          <h3>Visibility-aware Light Data</h3>
-          <p>Bake a grayscale shadow mask from visible Directional, Point, Spot, and Rect lights. Hidden lights and occluders are ignored, while uncovered or unlit texels remain neutral white.</p>
-          <a href="#light-data-details">Light Data guide ↓</a>
-        </article>
-        <article class="feature-card is-new" id="feature-light-albedo">
-          <span class="feature-status">New in this version</span>
-          <h3>Light Data into Albedo</h3>
-          <p>Multiply the Light Data mask into Albedo in linear color space, preserve Albedo alpha, and save one combined Base Color texture without a separate Light Data output.</p>
-          <a href="#light-data-details">Combine behavior ↓</a>
-        </article>
-        <article class="feature-card">
-          <span class="feature-category">Mesh support</span>
-          <h3>Static and Skeletal Meshes</h3>
-          <p>Bake LOD0 geometry from Static Mesh and Skeletal Mesh components across normal, indexed, batch, UV-channel, generated-material, and GLB workflows. Mesh Optimizer remains Static Mesh-only.</p>
+    <section class="section features-section" id="features"><header class="section-head features-head"><div><h2>Tool features</h2></div></header><div class="feature-group" id="features-presets"><h3 class="feature-group-title">Presets</h3><div class="features-grid"><article class="feature-card" id="feature-presets"><h4>Save &amp; load presets</h4><p>Save bake settings, lighting choices, passes, naming and scene batch entries. Select a saved setup and click Load; Save / Update replaces an existing preset with the same name.</p><a href="#presets">View option details →</a></article><article class="feature-card" id="feature-preset-reset"><h4>Delete &amp; reset</h4><p>Delete a saved preset after confirmation, or Reset to Defaults to clear the active setup. Reset keeps saved presets and project assets.</p><a href="#presets">View option details →</a></article><article class="feature-card" id="feature-preset-references"><h4>Restore references</h4><p>Missing mesh, material or scene references warn while valid options still load. Presets are stored per project and remain available after reopening Unreal.</p><a href="#presets">View option details →</a></article></div></div><div class="feature-group" id="features-bake-options"><h3 class="feature-group-title">Bake Tools</h3><div class="features-grid"><article class="feature-card" id="feature-glb-export">
+          <h4>GLB Export</h4>
+          <p>Export selected level mesh actors into one binary glTF file with component materials and textures, with optional JPEG output and adjustable compression.</p>
+          <a href="#glb-export-details">Export guide ↓</a>
+        </article><article class="feature-card" id="feature-mesh-optimizer">
+          <h4>UV Builder</h4>
+          <p>Create a new one-slot Static Mesh, normalized UV0 atlas, combined texture set, and generated baked material while preserving the original source mesh. Its UV workflow includes <strong>Exist UV</strong> for an authored channel, <strong>Repack UV</strong> for existing islands, and <strong>Generate UV Atlas</strong> for a fresh layout.</p>
+          <a href="#optimizer-details">UV Builder workflow ↓</a>
+        </article><article class="feature-card" id="feature-glb-quality"><h4>GLB texture quality</h4><p>Choose Export JPG for compatible embedded textures and adjust Compression / Quality. Use lossless output when normal-map or numeric-mask accuracy matters.</p><a href="#export">View option details →</a></article></div></div><div class="feature-group" id="features-mesh-settings"><h3 class="feature-group-title">Mesh Settings</h3><div class="features-grid"><article class="feature-card" id="feature-combine-material-slots"><h4>Combine Material Slots</h4><p>Use one shared texture set and generated material instance for all slots of a Static Mesh. Preserve the existing selected UV channel and mesh; use unique islands across slots.</p><a href="#combine-material-slots">Combine materials guide →</a></article><article class="feature-card">
+          <h4>Static and Skeletal Meshes</h4>
+          <p>Bake LOD0 geometry from Static Mesh and Skeletal Mesh components across normal, indexed, batch, UV-channel, generated-material, and GLB workflows. UV Builder remains Static Mesh-only.</p>
           <a href="#skeletal-support">Support details ↓</a>
-        </article>
-        <article class="feature-card">
-          <span class="feature-category">Material slots</span>
-          <h3>Single Index and Bake All Index</h3>
-          <p>Bake one selected Material Index for focused output, or enable Bake All Index to process every valid mesh material slot into the selected texture passes.</p>
+        </article><article class="feature-card">
+          <h4>Single Index and Bake All Material Slots</h4>
+          <p>Bake one selected Material Index for focused output, or enable Bake All Material Slots to process every valid mesh material slot into the selected texture passes.</p>
           <a href="#baking-rules">Selection guide ↓</a>
-        </article>
-        <article class="feature-card">
-          <span class="feature-category">Multiple meshes</span>
-          <h3>Batch Baking</h3>
+        </article><article class="feature-card">
+          <h4>Batch Meshes</h4>
           <p>Queue multiple scene components, use one shared material or each mesh's assigned materials, and choose a combined atlas or separate Batch Per Mesh texture sets.</p>
           <a href="#batch-details">Batch modes ↓</a>
-        </article>
-        <article class="feature-card is-new" id="feature-mesh-optimizer">
-          <span class="feature-status">New in this version</span>
-          <h3>Mesh Optimizer</h3>
-          <p>Create a new one-slot Static Mesh, normalized UV0 atlas, combined texture set, and generated baked material while preserving the original source mesh. Its UV workflow includes <strong>Exist UV</strong> for an authored channel, <strong>Repack UV</strong> for existing islands, and <strong>Generate UV Atlas</strong> for a fresh layout.</p>
-          <a href="#optimizer-details">Optimizer workflow ↓</a>
-        </article>
-        <article class="feature-card">
-          <span class="feature-category">UV control</span>
-          <h3>Selected UV Channel and Validation</h3>
+        </article><article class="feature-card">
+          <h4>Selected UV Channel and Validation</h4>
           <p>Choose the LOD0 UV channel used by every baked pass, decal, Light Data texture, and Auto Material sampler. Optional validation checks empty, invalid, and overlapping UV data.</p>
           <a href="#uv-details">UV channel guide ↓</a>
-        </article>
-        <article class="feature-card">
-          <span class="feature-category">Material evaluation</span>
-          <h3>World Space Correction</h3>
-          <p>Preserve component transform, bounds, orientation, and primitive data when baking triplanar, PixelNormalWS, object-space, and world-aligned material logic.</p>
-          <a href="#mesh-settings">Mesh controls ↓</a>
-        </article>
-        <article class="feature-card">
-          <span class="feature-category">Texture output</span>
-          <h3>Twelve Output Passes</h3>
-          <p>Bake Albedo, Normal, Roughness, Metallic, Specular, AO, Light Data, Displacement, Opacity Mask, Emissive, AlphaBlend, and CustomMap with per-pass color-space control.</p>
-          <a href="#passes">Output passes ↓</a>
-        </article>
-        <article class="feature-card">
-          <span class="feature-category">Packing</span>
-          <h3>ORM Packing</h3>
-          <p>Pack Ambient Occlusion into red, Roughness into green, and Metallic into blue for a compact material-data texture with Linear sampling.</p>
-          <a href="#passes">Packing reference ↓</a>
-        </article>
-        <article class="feature-card is-new" id="feature-rgba-opacity">
-          <span class="feature-status">New in this version</span>
-          <h3>RGBA and Opacity Mask Baking</h3>
-          <p>Bake the real material Opacity Mask as a standalone pass, apply Mask Threshold cleanup when needed, or enable RGBA to place the mask in Albedo/Diffuse alpha while preserving the RGB color result.</p>
-          <a href="#bake-settings">RGBA and mask controls ↓</a>
-        </article>
-        <article class="feature-card is-new" id="feature-decal-baking">
-          <span class="feature-status">New in this version</span>
-          <h3>Decal Baking</h3>
-          <p>Project compatible scene decals and masked mesh overlays into selected outputs with orientation controls, Height Blend, and the reliable Texture Projection workflow.</p>
-          <a href="#decal-details">Detailed Decal guide ↓</a>
-        </article>
-        <article class="feature-card">
-          <span class="feature-category">Generated materials</span>
-          <h3>Auto Material and Assign to Mesh</h3>
+        </article></div></div><div class="feature-group" id="features-material-settings"><h3 class="feature-group-title">Material Settings</h3><div class="features-grid"><article class="feature-card" id="feature-material-resolution">
+          <h4>Mesh material resolution</h4>
+          <p>Leave the panel Material empty to use the selected component's Material Index slot, followed by the mesh asset slot. Select a panel Material when the slot is empty or when an intentional override is needed.</p>
+          <a href="#baking-rules">Material rules ↓</a>
+        </article><article class="feature-card" id="feature-pixel-cover">
+          <h4>Exact Pixel Cover control</h4>
+          <p>Choose 0–64 pixels with a default of 3. Values 1–64 apply an exact dilation distance; 0 provides unlimited coverage for regular baked textures.</p>
+          <a href="#pixel-cover-details">Pixel Cover guide ↓</a>
+        </article><article class="feature-card">
+          <h4>Auto Material and Assign to Mesh</h4>
           <p>Create or intelligently update a generated master and material instance from the baked passes, then assign the result to supported mesh components or assets.</p>
           <a href="#auto-material-details">Auto Material guide ↓</a>
-        </article>
-        <article class="feature-card is-new" id="feature-glb-export">
-          <span class="feature-status">New in this version</span>
-          <h3>GLB Export</h3>
-          <p>Export selected level mesh actors into one binary glTF file with component materials and textures, with optional JPEG output and adjustable compression.</p>
-          <a href="#export">Export guide ↓</a>
-        </article>
-        <article class="feature-card">
-          <span class="feature-category">Finishing and delivery</span>
-          <h3>Texture Controls, Naming, and Paths</h3>
-          <p>Control format, resolution, color space, sharpness, mask threshold, flat or inverted normals, safe <code>/Game</code> output paths, prefixes, UV suffixes, and pass naming.</p>
-          <a href="#bake-settings">Output controls ↓</a>
-        </article>
-      </div>
-    </section>
+        </article><article class="feature-card" id="feature-two-sided"><h4>2Sided(Sign) &amp; 2side</h4><p>Capture separate front/back lighting with 2Sided(Sign), or enable ordinary two-sided rendering with 2side. Both choices are saved independently and sit beneath ORM in Bake Settings.</p><a href="#bake-settings">View option details →</a></article><article class="feature-card">
+          <h4>World Space Correction</h4>
+          <p>On by default. Preserve component transform, bounds, orientation, and primitive data when baking triplanar, PixelNormalWS, object-space, and world-aligned material logic. Saved preset choices are retained.</p>
+          <a href="#material-settings">Material controls ↓</a>
+        </article><article class="feature-card" id="feature-displacement"><h4>Editable displacement</h4><p>Bake the real displacement input and adjust Minimum, Maximum, Contrast and Strength in the generated instance.</p><a href="#displacement-details">View option details ↓</a></article></div></div><div class="feature-group" id="features-bake-settings"><h3 class="feature-group-title">Bake Settings</h3><div class="features-grid"><article class="feature-card">
+          <h4>Twelve Output Passes</h4>
+          <p>Bake Albedo, Normal, Roughness, Metallic, Specular, AO, Light Data, Displacement, Opacity Mask, Emissive, AlphaBlend, and CustomMap with per-pass color-space control.</p>
+          <a href="#passes">Output passes ↓</a>
+        </article><article class="feature-card">
+          <h4>ORM Packing</h4>
+          <p>Pack Ambient Occlusion into red, Roughness into green, and Metallic into blue for a compact material-data texture with Linear sampling.</p>
+          <a href="#passes">Packing reference ↓</a>
+        </article><article class="feature-card" id="feature-rgba-opacity">
+          <h4>RGBA and Opacity Mask Baking</h4>
+          <p>Bake the real material Opacity Mask as a standalone pass, apply Mask Threshold cleanup when needed, or enable RGBA to place the mask in Albedo/Diffuse alpha while preserving the RGB color result.</p>
+          <a href="#bake-settings">RGBA and mask controls ↓</a>
+        </article><article class="feature-card" id="feature-texture-controls"><h4>Texture size &amp; finishing</h4><p>Choose output format and resolution, per-pass Linear / Color, Sharpness, Normal Intensity and Invert Normal. Mask Threshold 0 preserves the evaluated grayscale mask.</p><a href="#bake-settings">View option details →</a></article><article class="feature-card" id="feature-light-albedo"><h4>Combine Lighting</h4><p>Combine the selected lighting data into BaseColor or save Light Data separately. The selected lighting source determines whether it stores visibility, illumination or rendered appearance.</p><a href="#light-data-details">View option details →</a></article><article class="feature-card" id="feature-decal-baking"><h4>Bake Decals</h4><p>Evaluate decal material graphs, UV controls, tint, instance parameters and static switches before compositing selected passes. Decals have their own Height Blend, Strength and Contrast.</p><a href="#decal-details">View option details →</a></article><article class="feature-card" id="feature-mesh-overlay"><h4>Mesh Overlay</h4><p>Flatten compatible planar masked/translucent cards using UV0. Set Projection Depth in centimeters and adjust the overlay’s independent Height Blend controls.</p><a href="#decal-details">View option details →</a></article></div></div><div class="feature-group" id="features-lighting"><h3 class="feature-group-title">Lighting &amp; Shadows</h3><div class="features-grid"><article class="feature-card" id="feature-light-data"><h4>Four lighting sources</h4><p>Bake Lumen scene lighting and reflections with Rendered Scene (Preview), capture Scene Lights or Shadows, or read saved Lightmass with Existing Baked Lightmap. The selected workflow determines the captured data.</p><a href="#light-data-details">View option details ↓</a></article><article class="feature-card" id="feature-scene-lighting"><h4>Scene Lights options</h4><p>Choose Light and Shadows for direct lights, sky and shadows, or + Postprocess to include inherited scene GI and indirect-light settings.</p><a href="#light-data-details">View option details →</a></article><article class="feature-card" id="feature-light-types"><h4>Light types &amp; emissive objects</h4><p>Point, Spot, Rect, Directional and Sky Lights are handled. Emissive illumination depends on the selected GI or saved Lightmass workflow; CPU fallback excludes emissive GI.</p><a href="#light-data-details">View option details →</a></article><article class="feature-card" id="feature-shading-modes"><h4>Unlit Material &amp; Baked Emissive</h4><p>Display captured appearance through Unlit Emissive, or add baked lighting to a Default Lit material with Baked Emissive. The two choices are mutually exclusive.</p><a href="#auto-material-details">View option details →</a></article><article class="feature-card" id="feature-light-quality"><h4>Quality &amp; sampling</h4><p>Quality / Optimization offers Draft, Standard and High plus Low memory captures (1K), on by default. Capture budgets and output texture size are separate; Lumen quality follows scene post-process settings or engine defaults.</p><a href="#lighting-settings">View option details →</a></article><article class="feature-card" id="feature-exposure"><h4>Exposure &amp; shadow strength</h4><p>Auto Exposure uses capture-view exposure. Exposure EV controls brightness; Shadow Strength applies to the Shadows source.</p><a href="#lighting-settings">View option details →</a></article></div></div><div class="feature-group" id="features-export"><h3 class="feature-group-title">Export Path / Naming</h3><div class="features-grid"><article class="feature-card" id="feature-export-paths"><h4>Output paths</h4><p>Create Unreal assets below a valid /Game folder, or save outputs relative to the mesh or material path. GLB exports selected Level Editor meshes.</p><a href="#export">View option details →</a></article><article class="feature-card" id="feature-output-naming"><h4>Predictable asset names</h4><p>Choose mesh, material or custom naming. Textures use T_&lt;Name&gt;_&lt;Pass&gt;; generated masters and instances use M_ and MI_. Source-name mode omits extra BakedTexture text.</p><a href="#naming-details">View option details →</a></article><article class="feature-card" id="feature-overwrite"><h4>Overwrite control</h4><p>Enable Overwrite existing files without asking to replace matching outputs without a prompt. Leave it off to keep confirmation; presets retain the choice.</p><a href="#export">View option details →</a></article></div></div></section>
 
-    <section class="section" id="quick-start">
-      <header class="section-head"><div><p class="eyebrow">Quick start · five minutes</p><h2>Your first successful bake</h2></div><p>Begin with this safe baseline. Add optimization, batching, light data, or decals only after the basic result is correct.</p></header>
-      <ol class="steps">
-        <li><span class="number">1</span><div><h3>Open the tool</h3><p>Press <kbd>Ctrl</kbd> + <kbd>F</kbd> in the Level Editor or use the SPA Materials Baker menu entry. The shortcut focuses the existing window when it is already open.</p></div><small>Editor</small></li>
-        <li class="new-feature"><span class="number">2</span><div><span class="feature-kicker">New scene workflow</span><h3>Pick the mesh from the scene</h3><p>In this version, always select the Static Mesh or Skeletal Mesh actor/component in the <strong>Level Editor viewport</strong>, then assign that scene selection in Mesh Settings. Choose the required <strong>Material Index</strong> for a single-slot bake. The scene component supplies the real transform, component material overrides, and data required by World Space Correction and Light Data.</p></div><small>New · Scene</small></li>
-        <li class="new-feature"><span class="number">3</span><div><span class="feature-kicker">New material resolution</span><h3>Use the mesh material or a panel override</h3><p>Leave <strong>Material</strong> empty to bake the material assigned to the selected scene component's Material Index slot; if there is no component override, the baker checks the mesh asset slot. If that slot is empty, select a material in the baker's <strong>Material Settings</strong> panel to supply the source. A material chosen in the panel also acts as an intentional override when the slot already contains a material. Enable World Space Correction for triplanar, PixelNormalWS, object-bounds, or world-aligned material logic.</p></div><small>New · Material</small></li>
-        <li><span class="number">4</span><div><h3>Choose output settings</h3><p>Start at 1K. Enable Dilation UV with 3 Pixel Cover. Select Albedo/Diffuse, Normal, Roughness, and Metallic. Keep masks and numeric data Linear.</p></div><small>Output</small></li>
-        <li><span class="number">5</span><div><h3>Name, bake, and inspect</h3><p>Use a valid <code>/Game/…</code> export folder and a short base name. Press Bake, then inspect seams, normal orientation, color space, and asset naming.</p></div><small class="success">Bake</small></li>
-      </ol>
-      <div class="notice uv-warning"><b>!</b><p><strong>Important UV behavior</strong>SPA Material Baker can bake source meshes that use <strong>tiled UVs</strong> or <strong>overlapping UVs</strong>; an overlap is not automatically a bake failure. UV Validation is optional because many materials intentionally tile or stack islands. If Validation reports a UV overlap error and the overlap is intentional, turn Validation off and continue. Use a unique, non-overlapping UV channel for Light Data, decal atlases, Mesh Optimizer output, and conventional reusable texture sets, because overlapping surfaces write into the same output texels.</p></div>
-      <div class="notice good"><b>✓</b><p><strong>Recommended first test</strong>Bake one material index at 1024×1024. Raise the resolution only after the result is correct.</p></div>
-    </section>
+    
 
-    <section class="section deep-section" id="deep-dives">
-      <header class="section-head"><div><p class="eyebrow">Production behavior explained</p><h2>Detailed guides</h2></div><p>Complete guidance for scene targets, material resolution, batch baking, Mesh Optimizer, UVs, Pixel Cover, Light Data, Decal Baking, generated materials, and output naming. Orange guides describe new-version behavior.</p></header>
+    
 
-      <article class="deep-guide is-new-guide" id="baking-rules">
-        <div class="guide-title"><span>01</span><div><p class="eyebrow">Source resolution</p><h3>Mesh and material selection rules</h3></div></div>
+
+    
+    <section class="section" id="controls">
+      <header class="section-head search-head"><div><h2>Every visible setting</h2></div><label>Find a control<input id="search" type="search" placeholder="Try UV, batch, normal…"></label></header>
+
+<article class="control-group" id="presets"><header><h3>Presets</h3></header><div class="tool-screenshots"><figure class="tool-screenshot"><a href="assets/Presets.webp" data-tool-screenshot aria-label="Enlarge Presets"><img src="assets/Presets.webp" alt="Presets in SPA Materials Baker" width="698" height="282" loading="lazy" decoding="async"></a><figcaption>Presets<span>Click to enlarge</span></figcaption></figure></div><div class="control-list"><div class="setting"><b>Save / Update</b><p>Enter a name to save the setup. Saving an existing name replaces that preset.</p></div><div class="setting"><b>Load</b><p>Choose a preset and click Load. Restores bake, material, lighting/postprocess, pass, color-space, export and naming choices, references and batch scene entries.</p></div><div class="setting"><b>Missing references</b><p>Unavailable meshes, materials or level instances warn while valid settings still load. Open the matching level and replace unresolved references.</p></div><div class="setting"><b>Delete</b><p>Removes the selected saved preset after confirmation; keeps current settings and project assets.</p></div><div class="setting"><b>Reset to Defaults</b><p>Restores factory options and clears current mesh/material selections, passes and batch entries. Keeps saved presets and project assets.</p></div><div class="setting"><b>Preset storage</b><p>Per project in <code>Saved/SPAMaterialBaker/Presets</code>. Older presets missing optional fields receive defaults. World Space Correction and Low memory captures (1K) default to on; explicitly saved choices remain intact. The two-sided choices persist independently. Legacy covered-internal-face and persistent lighting-result-cache values are ignored. Hidden Calculation Method and Camera Distance values remain stored for preset compatibility. Malformed or unsupported settings leave the current setup unchanged.</p></div></div></article>
+      <article class="control-group" id="bake-options">
+        <header><h3>Bake Tools</h3></header><div class="tool-screenshots"><figure class="tool-screenshot"><a href="assets/BakeTools.webp" data-tool-screenshot aria-label="Enlarge Bake Tools"><img src="assets/BakeTools.webp" alt="Bake Tools in SPA Materials Baker" width="699" height="160" loading="lazy" decoding="async"></a><figcaption>Bake Tools<span>Click to enlarge</span></figcaption></figure></div>
+        <div class="control-list"><div class="setting" id="glb-export-details"><b>GLB Export</b><div class="table-scroll"><table class="doc-table"><caption>GLB Export options and workflow</caption><thead><tr><th>Option / step</th><th>Information</th></tr></thead><tbody><tr><th scope="row">Export GLB</th><td>Select one or more Static or Skeletal Mesh actors/components in the Level Editor, then click Export GLB. Exports the selected meshes to one binary glTF file with component transforms, assigned materials and textures.</td></tr><tr><th scope="row">Filename</th><td>Defaults to the selected mesh asset name. Multiple selections add the remaining mesh count.</td></tr><tr><th scope="row">Baked color and textures</th><td>Preserves baked Unlit appearance without Unreal view-exposure compensation. Handles HDR/linear readback without permanently changing source compression or assignments. Vertex colors are omitted to avoid tinting baked color.</td></tr><tr><th scope="row">Export JPG</th><td>Uses JPEG for compatible GLB textures to reduce file size. Keep lossless output for normal maps and numeric masks when accuracy matters.</td></tr><tr><th scope="row">Compression / Quality</th><td>Compression range: 0–99. Higher compression gives smaller, lower-quality JPEGs. Displayed Quality = 100 − Compression.</td></tr><tr><th scope="row">Supported texture passes</th><td><span class="material-critical">GLB does not support every baked pass as a standard material input.</span> It exports compatible glTF material textures; Unreal-specific outputs and custom passes may not be represented. Keep the separately baked texture assets when those passes are needed in another workflow.</td></tr><tr><th scope="row">Displacement limitation</th><td><span class="material-critical">GLB does not carry the baker’s displacement texture as a displacement material or Unreal Nanite tessellation.</span> Export actual displaced geometry when silhouette detail is required.</td></tr></tbody></table></div></div><div class="setting" id="optimizer-details"><b>UV Builder</b><div class="table-scroll"><table class="doc-table"><caption>UV Builder options and workflow</caption><thead><tr><th>Option / step</th><th>Information</th></tr></thead><tbody><tr><th scope="row">Generated output</th><td>Creates a new Static Mesh with one material slot, normalized UV0 atlas, combined textures and a generated material. Preserves the original mesh and materials.</td></tr><tr><th scope="row">Requirements</th><td>Use Single Mesh with valid Static Mesh LOD0 geometry and at least one material slot. <span class="material-critical">Skeletal Meshes, Rendered Scene (Preview) and Existing Baked Lightmap are unsupported by UV Builder.</span> Those lighting sources require the original receiver layout.</td></tr><tr><th scope="row">Enable UV Builder</th><td>Enables Bake All Material Slots, mesh-UV baking and Auto Material. Disables Batch Meshes, Use Mesh Materials, Batch Per Mesh, path-relative naming and direct Assign to Mesh.</td></tr><tr><th scope="row">Exist UV</th><td>Uses an authored source channel. Choose unique, non-overlapping islands across all slots. Initial preference is UV1 when multiple channels exist.</td></tr><tr><th scope="row">Repack UV</th><td>Preserves existing island shapes while repacking into normalized 0–1 space. Use when seams and topology are suitable but island placement or scale needs consolidation.</td></tr><tr><th scope="row">Generate UV Atlas</th><td>Creates a fresh layout. Use when existing UVs overlap, tile heavily, waste space or cannot safely hold all slots in one texture set.</td></tr><tr><th scope="row">Keep the original mesh instead</th><td>Use <a href="#combine-material-slots">Combine Material Slots</a> to share textures across slots while preserving the original mesh and its selected UV layout.</td></tr></tbody></table></div></div></div>
+</article>
+
+      <article class="control-group" id="mesh-settings">
+        <header><h3>Mesh Settings</h3></header><div class="tool-screenshots"><figure class="tool-screenshot"><a href="assets/SingleMesh.webp" data-tool-screenshot aria-label="Enlarge Single Mesh"><img src="assets/SingleMesh.webp" alt="Single Mesh in SPA Materials Baker" width="777" height="190" loading="lazy" decoding="async"></a><figcaption>Single Mesh<span>Click to enlarge</span></figcaption></figure></div>
+        <div class="control-list">
+<div class="setting is-new-setting"><b>Select Mesh </b><p>Select a Static Mesh or Skeletal Mesh actor/component in the Level Editor viewport and assign that scene selection. The component supplies its real transform, bounds, and material overrides.</p><div class="option-explanation" id="skeletal-support">
+        
         <div class="guide-body">
-          <p class="guide-lead">A mesh is always required. In a normal single-index bake, selecting a material is optional because the baker can read the material from the selected mesh slot.</p>
+          <h4>Supported workflows</h4><p>Static and Skeletal Meshes support single-index and all-slot baking, batches, GLB selection, UV-channel selection and generated-material assignment.</p>
+          <div class="support-columns"><div><h4>Supported</h4><ul><li>LOD0 imported Skeletal Mesh geometry</li><li>Material-slot and override resolution</li><li>Single-index and Bake All Material Slots workflows</li><li>Scene-component batch workflows</li><li>Skeletal UV-channel count and clamping</li><li>Generated material assignment to component and asset slots</li><li>World Space Correction from a selected Skeletal Mesh component</li></ul></div><div><h4>Current limitation</h4><ul><li><strong>UV Builder is Static Mesh-only.</strong></li><li>The Skeletal Mesh must have a valid imported LOD0 model.</li><li>Skeletal baking uses imported LOD0 reference-pose geometry. Animated poses, morphs and cloth are not baked. It does not change the skeleton or create an optimized Skeletal Mesh. GPU lighting capture has additional receiver restrictions; Rendered Scene and Existing Baked Lightmap are not general skeletal lighting workflows.</li></ul></div></div>
+          <div class="important warning-box"><b>Optimizer rule</b><p>Enabling UV Builder with a Skeletal Mesh is rejected. Use a normal Skeletal Mesh bake or Batch Per Mesh instead.</p></div>
+        </div>
+      </div></div>
+<div class="setting"><b>Batch Meshes</b><div class="tool-screenshots"><figure class="tool-screenshot"><a href="assets/BatchMesh.webp" data-tool-screenshot aria-label="Enlarge Batch Meshes"><img src="assets/BatchMesh.webp" alt="Batch Meshes in SPA Materials Baker" width="779" height="378" loading="lazy" decoding="async"></a><figcaption>Batch Meshes<span>Click to enlarge</span></figcaption></figure></div><p>Bakes multiple scene mesh actors or components in one run. Select items in the viewport and click Add Selected to queue them.</p><div class="option-explanation" id="batch-details">
+        
+        <div class="guide-body">
+          <p class="guide-lead">Batch Meshes accepts <strong>level scene components only</strong>. Select Static Mesh or Skeletal Mesh actors/components in the viewport and click <strong>Add Selected</strong>. Content Browser-only entries cannot supply component transforms or correct Light Data shadow tracing.</p>
+          <div class="table-scroll"><table class="doc-table"><caption>Batch Meshes modes</caption><thead><tr><th>Mode</th><th>Material source</th><th>Output behavior</th><th>Best use</th></tr></thead><tbody><tr><th>Batch Meshes</th><td>One material selected in Material Settings</td><td>One combined batch/atlas output set</td><td>Apply the same material to several meshes</td></tr><tr><th>+ Use Mesh Materials</th><td>Each queued mesh's assigned material and slot mapping, instead of one manually selected material</td><td>One combined atlas using mesh/material pairs</td><td>Mixed materials consolidated into shared outputs</td></tr><tr><th>+ Batch Per Mesh</th><td>Always resolves each mesh/component slot; no panel material is required, even with Use Mesh Materials off</td><td>A separate named texture set for every mesh</td><td>Independent assets and clean per-object delivery</td></tr></tbody></table></div><p><strong>Queue controls:</strong> Add Selected queues level actors/components. Remove removes highlighted entries; Clear empties the queue. Content Browser-only selections cannot provide the required scene data.</p><ul class="support-list"><li>World Space Correction requires every batch item to remain linked to a valid scene component.</li><li>Light Data is evaluated per scene instance, so component transform and trace-ignore data remain correct.</li></ul>
+        </div>
+      </div></div>
+
+
+
+<div class="setting"><b>Material slots</b><div class="table-scroll"><table class="doc-table"><caption>Choose material-slot coverage</caption><thead><tr><th>Option</th><th>Behavior</th><th>Requirements and output</th></tr></thead><tbody>
+<tr><th>Material Index</th><td>Selects one slot. With Material empty, checks the component override first, then the mesh asset slot.</td><td>Single-index baking. Disabled by Batch Meshes, Bake All Material Slots and UV Builder.</td></tr>
+<tr><th>Bake All Material Slots</th><td>Bakes every material slot into the selected outputs.</td><td>Available for single- and multi-slot meshes.</td></tr>
+<tr id="combine-material-slots"><th>Combine Material Slots</th><td>Combines one Static Mesh’s slots into one texture set and material instance using the selected existing UV channel, including UV1+. Preserves the original mesh and UVs; creates no replacement mesh.</td><td>Requires Bake All Material Slots and Auto Material. Unavailable for Batch Meshes, Skeletal Meshes or UV Builder. <span class="material-critical">Use unique, non-overlapping UVs across all included slots.</span> Apply the resulting instance to the desired slots; the original mesh is not automatically reassigned. Names include <code>_Combined</code> and the UV suffix.</td></tr>
+</tbody></table></div></div>
+<div class="setting"><b>UV Channel</b><div class="option-explanation" id="uv-details"><p>Selects the zero-based LOD0 texture-coordinate channel for the bake. The value is clamped to channels available on the selected Static or Skeletal Mesh.</p><div class="table-scroll"><table class="doc-table uv-channel-table"><caption>UV channels and bake behavior</caption><thead><tr><th>Channel / behavior</th><th>Information</th><th>Example</th></tr></thead><tbody>
+<tr><th>UV0</th><td>Normal material UVs. Suitable for unique islands or intentionally tiled/stacked material-only workflows. A normal bake does not create multiple UDIM output files.</td><td><figure class="tool-screenshot uv-channel-example"><a href="assets/image/uv-channel-0.png" data-tool-screenshot aria-label="Enlarge UV0 — Coordinate Index 0"><img src="assets/image/uv-channel-0.png" alt="UV0 — Coordinate Index 0 Texture Coordinate node" loading="lazy" decoding="async"></a><figcaption>UV0 — Coordinate Index 0<span>Click to enlarge</span></figcaption></figure></td></tr>
+<tr><th>UV1+</th><td>Alternate layouts, unique unwraps or lightmap-style UVs. Output names receive <code>_UV1</code>, <code>_UV2</code> and so on. The generated Texture Coordinate node uses the selected index.</td><td><figure class="tool-screenshot uv-channel-example"><a href="assets/image/uv-channel-1.png" data-tool-screenshot aria-label="Enlarge UV1 — Coordinate Index 1"><img src="assets/image/uv-channel-1.png" alt="UV1 — Coordinate Index 1 Texture Coordinate node" loading="lazy" decoding="async"></a><figcaption>UV1 — Coordinate Index 1<span>Click to enlarge</span></figcaption></figure></td></tr>
+<tr><th>Passes and generated materials</th><td colspan="2">Albedo, masks, normals, ORM, decals, Light Data and Auto Material samplers follow the same selected channel. World Space Correction affects scene/object inputs, not channel selection.</td></tr>
+<tr><th>Overlaps and padding</th><td colspan="2"><span class="material-critical">Use unique, non-overlapping UVs across included surfaces for Light Data, decals, overlays, UV Builder output and conventional reusable texture sets.</span> Overlapping surfaces write into the same texels. Intentional tiling/stacking can work for material-only bakes; an overlap is not automatically a failure. Leave enough island spacing for Dilation UV / Pixel Cover.</td></tr>
+<tr><th>Validation and first test</th><td colspan="2">Validate Before Bake is optional and off by default. If it reports intentional overlaps, disable it to continue. The extra Proceed/Cancel UV warning is disabled. Test one material index at 1024×1024 before raising resolution.</td></tr>
+</tbody></table></div><div class="lighting-uv-example"><h4>Example mesh UVs for lighting and decals</h4><figure class="tool-screenshot"><a href="assets/image/lighting-decal-uv-layout.png" data-tool-screenshot aria-label="Enlarge mesh UV layout for lighting and decals"><img src="assets/image/lighting-decal-uv-layout.png" alt="Building wall UV islands laid out separately for lighting and decal texture baking" width="811" height="807" loading="lazy" decoding="async"></a><figcaption>Separate UV islands for lighting and decal bakes<span>Click to enlarge</span></figcaption></figure><p>Use a unique layout so each receiver surface has its own texture space. Select that UV channel in the baker and leave padding between islands for filtering and Dilation UV.</p><p class="material-critical">Avoid stacked or overlapping receiver UVs for lighting and decals: different surfaces can write conflicting values into the same texels. This screenshot illustrates the layout; use Validate Before Bake to check your own mesh.</p></div></div></div>
+<div class="setting"><b>Validate Before Bake</b><p>Validate Before Bake optionally checks finite/non-empty UV data and overlap problems. Off by default. The separate Proceed/Cancel UV Channel Warning is currently disabled.</p></div>
+</div>
+      </article>
+
+      <article class="control-group" id="material-settings">
+        <header><h3>Material Settings</h3></header><div class="tool-screenshots"><figure class="tool-screenshot"><a href="assets/Material%20settings.webp" data-tool-screenshot aria-label="Enlarge Material Settings"><img src="assets/Material%20settings.webp" alt="Material Settings in SPA Materials Baker" width="770" height="143" loading="lazy" decoding="async"></a><figcaption>Material Settings<span>Click to enlarge</span></figcaption></figure><figure class="tool-screenshot"><a href="assets/materialSelector.webp" data-tool-screenshot aria-label="Enlarge Material Selector"><img src="assets/materialSelector.webp" alt="Material Selector in SPA Materials Baker" width="652" height="374" loading="lazy" decoding="async"></a><figcaption>Material Selector<span>Click to enlarge</span></figcaption></figure></div>
+        <div class="control-list">
+<div class="setting is-new-setting"><b>Material </b><p>Optional in a normal single-index bake. Leave it empty to use the selected scene component or mesh asset slot. Choose a <code>/Game</code> material when that slot is empty or to intentionally override an occupied slot.</p><div class="option-explanation" id="baking-rules">
+        
+        <div class="guide-body">
+          
           <div class="decision-grid">
             <div><b>Mesh selected · Material empty</b><p>The baker reads <strong>Material Index</strong> from the selected scene component first. If no component override exists, it reads that slot from the Static or Skeletal Mesh asset.</p></div>
             <div><b>Mesh selected · Material selected</b><p>The selected material becomes an <strong>override</strong>. It is baked onto the selected mesh UVs instead of the material currently assigned to that mesh slot.</p></div>
             <div><b>Selected material is a Deferred Decal</b><p>It is treated as a decal source, not the base mesh material. The baker ignores it as the base and falls back to the selected mesh slot.</p></div>
             <div><b>Selected slot is empty</b><p>Baking stops unless a valid override material is selected. Assign a slot material or choose an override in Material Settings.</p></div>
           </div>
-          <div class="rule-flow"><span>Select mesh</span><i>→</i><span>Select Material Index</span><i>→</i><span>Optional material override</span><i>→</i><span>Select passes and bake</span></div>
+          
           <div class="important"><b>Important</b><p>The selected material changes what is evaluated; it does not change the target geometry or UVs. The selected mesh always provides the bake surface and selected UV channel.</p></div>
         </div>
-      </article>
-
-      <article class="deep-guide" id="batch-details">
-        <div class="guide-title"><span>02</span><div><p class="eyebrow">Multiple scene meshes</p><h3>Batch Baking, Use Meshes Material, and Batch Per Mesh</h3></div></div>
-        <div class="guide-body">
-          <p class="guide-lead">Batch Baking accepts <strong>level scene components only</strong>. Select Static Mesh or Skeletal Mesh actors/components in the viewport and click <strong>Add Selected</strong>. Content Browser-only entries cannot supply component transforms or correct Light Data shadow tracing.</p>
-          <div class="mode-table">
-            <div class="mode-head"><b>Mode</b><b>Material source</b><b>Output behavior</b><b>Best use</b></div>
-            <div><b>Batch Baking</b><p>One material selected in Material Settings</p><p>One combined batch/atlas output set</p><p>Apply the same material to several meshes</p></div>
-            <div><b>+ Use Meshes Material</b><p>Each component's material slot</p><p>One combined atlas using mesh/material pairs</p><p>Mixed materials consolidated into shared outputs</p></div>
-            <div><b>+ Batch Per Mesh</b><p>Always resolves from each mesh/component slot</p><p>A separate named texture set for every mesh</p><p>Independent assets and clean per-object delivery</p></div>
-          </div>
-          <ul class="support-list"><li><strong>Add Selected</strong> queues the current viewport selection.</li><li><strong>Remove Selected</strong> removes highlighted queue entries; <strong>Clear</strong> empties the queue.</li><li>Batch Per Mesh does not require a picked material, even when Use Meshes Material is off.</li><li>World Space Correction requires every batch item to remain linked to a valid scene component.</li><li>Light Data is evaluated per scene instance, so component transform and trace-ignore data remain correct.</li></ul>
-        </div>
-      </article>
-
-      <article class="deep-guide" id="skeletal-support">
-        <div class="guide-title"><span>03</span><div><p class="eyebrow">Supported geometry</p><h3>Skeletal Mesh support</h3></div></div>
-        <div class="guide-body">
-          <p class="guide-lead">SPA Material Baker supports Static Meshes and Skeletal Meshes for normal, Bake All Index, batch, Batch Per Mesh, GLB selection, UV-channel selection, Auto Material, and material assignment.</p>
-          <div class="support-columns"><div><h4>Supported</h4><ul><li>LOD0 imported Skeletal Mesh geometry</li><li>Material-slot and override resolution</li><li>Single-index and Bake All Index workflows</li><li>Scene-component batch workflows</li><li>Skeletal UV-channel count and clamping</li><li>Generated material assignment to component and asset slots</li><li>World Space Correction from a selected Skeletal Mesh component</li></ul></div><div><h4>Current limitation</h4><ul><li><strong>Mesh Optimizer is Static Mesh-only.</strong></li><li>The Skeletal Mesh must have a valid imported LOD0 model.</li><li>The bake captures the mesh geometry/material state used by the editor workflow; it does not create or modify animation data, skin weights, skeletons, or a new optimized Skeletal Mesh.</li></ul></div></div>
-          <div class="important warning-box"><b>Optimizer rule</b><p>Enabling Mesh Optimizer with a Skeletal Mesh is rejected. Use a normal Skeletal Mesh bake or Batch Per Mesh instead.</p></div>
-        </div>
-      </article>
-
-      <article class="deep-guide is-new-guide" id="optimizer-details">
-        <div class="guide-title"><span>04</span><div><p class="eyebrow">One mesh · one material</p><h3>Complete Mesh Optimizer workflow</h3></div></div>
-        <div class="guide-body">
-          <p class="guide-lead">Mesh Optimizer converts a multi-slot <strong>Static Mesh</strong> into a new optimized mesh with one material slot, a normalized UV0 layout, a baked texture set, and a generated material.</p>
-          <ol class="mini-steps"><li><b>Select a Static Mesh.</b><p>The mesh must contain at least one material slot and valid LOD0 geometry.</p></li><li><b>Enable Mesh Optimizer.</b><p>The baker automatically enables Bake All Index, mesh-UV baking, and Auto Material. It disables Batch Baking, Use Meshes Material, Batch Per Mesh, path-relative naming, and direct Assign to Mesh.</p></li><li><b>Choose one UV strategy.</b><p>The selected strategy determines how every original slot is placed into the new optimized UV0.</p></li><li><b>Select passes, resolution, and output path.</b><p>All valid material slots are baked into one atlas per selected pass.</p></li><li><b>Bake.</b><p>The tool creates the optimized Static Mesh, combined textures, master/material instance output, and assigns the generated baked material to the new optimized mesh.</p></li></ol>
-          <div class="strategy-grid">
-            <div><span>Method A</span><h4>Exist UV</h4><p>Uses a chosen existing source channel. Best when that channel already has unique, non-overlapping islands suitable for one atlas. When multiple channels exist, the optimizer initially prefers UV1.</p></div>
-            <div><span>Method B</span><h4>Repack UV</h4><p>Keeps existing island shapes but repacks them into normalized 0–1 space. Use when the topology and seams are good but island placement or scale needs consolidation.</p></div>
-            <div><span>Method C</span><h4>Generate UV Atlas</h4><p>Creates a fresh atlas. Use when existing UVs overlap, tile heavily, waste space, or cannot safely store all material slots in one texture set.</p></div>
-          </div>
-          <div class="important"><b>Result</b><p>The optimized asset uses one material slot and the new atlas in UV0. The original source mesh and its materials are not replaced.</p></div>
-        </div>
-      </article>
-
-      <article class="deep-guide" id="uv-details">
-        <div class="guide-title"><span>05</span><div><p class="eyebrow">Texture placement</p><h3>Selected UV channel explained</h3></div></div>
-        <div class="guide-body">
-          <p class="guide-lead">The UV Channel value selects the LOD0 texture-coordinate channel used to rasterize the bake. The input is automatically clamped to the channels that exist on the selected Static or Skeletal Mesh.</p>
-          <div class="uv-grid"><div><b>UV0</b><p>Normal material UVs. Appropriate when islands do not overlap, or when intentional tiled/UDIM behavior is expected by the workflow.</p></div><div><b>UV1+</b><p>Useful for unique unwraps, lightmap-style layouts, or alternate texture sets. Output names receive <code>_UV1</code>, <code>_UV2</code>, and so on to prevent overwriting UV0 results.</p></div><div><b>All passes follow it</b><p>Albedo, masks, normals, ORM, decals, Light Data, and Auto Material texture samplers use the same selected channel.</p></div><div><b>Validation</b><p>Enable Validation to check finite/non-empty UV data and overlaps. It is intentionally optional because tiled UVs may overlap by design.</p></div></div>
-          <ul class="support-list"><li>Use a unique, non-overlapping UV channel for Light Data, decal atlases, and conventional baked texture sets.</li><li>Overlapping islands cause multiple surfaces to write into the same texels.</li><li>Closely packed islands need enough padding for Dilation UV / Pixel Cover.</li><li>World Space Correction changes scene/object inputs, not the selected UV channel.</li><li>The generated Auto Material creates a Texture Coordinate node using this same channel.</li></ul>
-        </div>
-      </article>
-
-      <article class="deep-guide is-new-guide" id="pixel-cover-details">
-        <div class="guide-title"><span>06</span><div><p class="eyebrow">UV edge padding</p><h3>Dilation UV and Pixel Cover</h3></div></div>
-        <div class="guide-body">
-          <p class="guide-lead">Dilation UV expands valid edge colors beyond UV islands to reduce seams and filtering artifacts. Pixel Cover controls how far that expansion travels; it does not resize or repack the UV islands themselves.</p>
-          <div class="decision-grid"><div><b>Dilation UV off</b><p>No edge expansion is performed. Pixel Cover is disabled and has no effect.</p></div><div><b>Pixel Cover 0</b><p>Unlimited coverage for regular baked textures: dilation continues until every reachable empty texel is filled. For Light Data, unused texels stay neutral white so shadows do not flood the atlas.</p></div><div><b>Pixel Cover 1–64</b><p>Applies that exact expansion distance in pixels. The default is 3 pixels.</p></div><div><b>Choosing a value</b><p>Use enough padding for filtering and mipmaps, but leave room between islands. Larger values can pull colors from neighboring islands and create bleed.</p></div></div>
-          <ul class="support-list"><li>Start with the default value of 3 for ordinary 1K test bakes.</li><li>Raise the value when seams remain and the UV islands have sufficient spacing.</li><li>Lower it when nearby islands contaminate one another.</li><li>Resolution matters: the same numeric distance covers a smaller portion of a higher-resolution texture.</li><li>Pixel Cover applies to single, Bake All Index, batch atlas, Batch Per Mesh, and optimized texture output.</li></ul>
-          <div class="important"><b>Light Data exception</b><p>Because Light Data is multiplied with Base Color, its uncovered background must remain white. This prevents empty atlas space from darkening Albedo or spreading black shadow texels beyond real UV coverage.</p></div>
-        </div>
-      </article>
-
-      <article class="deep-guide is-new-guide" id="light-data-details">
-        <div class="guide-title"><span>07</span><div><p class="eyebrow">Scene lighting</p><h3>Bake Light Data</h3></div></div>
-        <div class="guide-body">
-          <p class="guide-lead">Light Data produces a grayscale, texture-space shadow multiplier from scene lights and visibility traces. White is neutral and darker values add shadowing. Direct-light brightness and color are not baked, so the generated material remains Default Lit and Unreal continues to provide the live lighting response.</p>
-          <div class="decision-grid"><div><b>Separate Light Data pass</b><p>Saves a <code>_LightData</code> texture so the mask can be adjusted or combined later. Keep this numeric mask Linear.</p></div><div><b>Bake into Albedo/Diffuse</b><p>Automatically enables Base Color and Light Data, multiplies them in linear color space, preserves Albedo alpha, and saves one combined Base Color. The separate Light Data texture is not saved.</p></div><div><b>Strength · 0–4</b><p>0 makes the mask white and removes shadow darkening. 1 preserves the calculated mask; values below 1 lighten shadows and values above 1 deepen them. The setting affects both separate and combined output.</p></div><div><b>Scene requirement</b><p>Use a selected level component for correct world transforms, normals, and shadow traces. Batch items must remain linked to their scene components.</p></div></div>
-          <div class="support-columns"><div><h4>Included</h4><ul><li>Directional, Point, Spot, and Rect lights</li><li>Only lights currently visible in the editor</li><li>Light attenuation, direction/cone, source size, and Cast Shadows state</li><li>Visible shadow-casting actors and components, including self-shadowing geometry</li></ul></div><div><h4>Neutral / ignored</h4><ul><li>Hidden actors, hidden components, and hidden lights are ignored</li><li>Unsupported light types are ignored</li><li>Texels with no relevant light remain neutral white</li><li>Direct-light color and brightness remain live renderer responsibilities</li></ul></div></div>
-          <ul class="support-list"><li>Light Data follows the selected bake UV channel, including UV1+ and the final optimized UV0 atlas.</li><li>Choose a unique, non-overlapping UV channel; overlaps make unrelated surfaces share lighting texels.</li><li>When saved separately, positive Pixel Cover values dilate the shadow-mask edge by that exact distance.</li><li>Pixel Cover 0 keeps unused Light Data texels neutral white instead of spreading dark shadow pixels across the atlas.</li><li>When Light Data is combined into Albedo, the Light Data padding remains neutral while the Albedo receives the selected dilation.</li></ul>
-          <div class="important"><b>What this pass stores</b><p>Light Data is a reusable shadow/visibility mask, not a replacement for Unreal's lighting. A scene with no relevant visible lights produces neutral white rather than a black texture.</p></div>
-        </div>
-      </article>
-
-      <article class="deep-guide is-new-guide" id="decal-details">
-        <div class="guide-title"><span>08</span><div><p class="eyebrow">New layered-detail baking</p><h3>Complete Decal Baking workflow</h3></div></div>
-        <div class="guide-body">
-          <p class="guide-lead">Enable <strong>Bake Decals</strong> to composite visible scene decals and compatible masked mesh overlays into the texture passes already selected for the base material bake. The target must be a valid scene component so projection and receiver transforms are correct.</p>
-          <div class="decision-grid">
-            <div><b>Texture Projection · recommended</b><p>Reads compatible decal texture inputs and projects them directly into Albedo, Normal, Roughness, Metallic, AO, ORM, Opacity Mask, and Displacement. It is the fast, stable production path.</p></div>
-            <div><b>Final Render Capture · experimental</b><p>Attempts to capture Unreal's rendered decal result for more complex graphs. It is slower, disables projection-orientation controls, and falls back when valid capture data is unavailable.</p></div>
-            <div><b>Pass-aware compositing</b><p>Decals affect only outputs already selected for the material bake. Missing or incompatible decal inputs are skipped instead of creating unrelated passes.</p></div>
-            <div><b>Scene visibility</b><p>Use the intended visible decal actors/components around the selected receiver. Scene placement, projection volume, orientation, and receiver geometry determine where the decal is written.</p></div>
-          </div>
-          <div class="support-columns">
-            <div><h4>Projection controls</h4><ul><li>Rotate 0°, 90°, 180°, or 270°</li><li>Default orientation is 180° with Flip U enabled</li><li>Flip U and Flip V correct mirrored projection</li><li>Single and batch baking are supported</li></ul></div>
-            <div><h4>Advanced blending</h4><ul><li>Height Blend uses receiver Height/Displacement to reduce coverage on raised detail</li><li>Strength controls how much height affects the decal</li><li>Contrast controls the softness or hardness of the cutoff</li><li>Masked Mesh Overlays flatten nearby planar cards using their triangles and UV0</li></ul></div>
-          </div>
-          <ul class="support-list"><li>Texture Projection is recommended for reliable texture-driven decal materials.</li><li>Height Blend requires useful receiver height/displacement data to produce a meaningful result.</li><li>Masked overlays need a compatible masked/translucent material or readable opacity texture and a suitable receiver-search depth.</li><li>If orientation is wrong, test the four rotations first, then adjust Flip U and Flip V.</li></ul>
-          <div class="important"><b>Recommended setup</b><p>Select the receiver mesh from the Level Editor, enable only the passes the decal should modify, use Texture Projection, then verify orientation before enabling Height Blend or masked overlays.</p></div>
-        </div>
-      </article>
-
-      <article class="deep-guide" id="auto-material-details">
-        <div class="guide-title"><span>09</span><div><p class="eyebrow">Generated Unreal material</p><h3>Auto Material and Assign to Mesh</h3></div></div>
-        <div class="guide-body">
-          <div class="decision-grid"><div><b>Auto Material off</b><p>The baker creates and saves textures only. No master material or material instance is generated.</p></div><div><b>Auto Material on</b><p>The baker creates or intelligently rebuilds the generated master and creates a material instance connected to the selected passes, packing choices, and UV channel.</p></div><div><b>Assign to Mesh on</b><p>After the generated material is ready, it is assigned to the relevant Static or Skeletal Mesh component/asset material slot.</p></div><div><b>Mesh Optimizer</b><p>Auto Material is forced on, but the normal Assign to Mesh control is disabled. The generated material is assigned to the newly created optimized mesh instead.</p></div></div>
-          <ul class="support-list"><li>Assign to Mesh is available only when Auto Material is enabled.</li><li>Single-index assignment targets the selected Material Index.</li><li>Static and Skeletal Mesh assets/components are supported.</li><li>The generated material's Texture Coordinate node uses the selected UV channel, including UV1+.</li><li>Batch assignment requires valid scene components; Batch Per Mesh creates and handles each per-mesh result independently.</li></ul>
-        </div>
-      </article>
-
-      <article class="deep-guide" id="naming-details">
-        <div class="guide-title"><span>10</span><div><p class="eyebrow">Safe and predictable output</p><h3>Naming and path rules</h3></div></div>
-        <div class="guide-body">
-          <div class="naming-table"><div><b>Rule</b><b>Behavior</b></div><div><p>Export Path</p><p>Must be a valid Unreal package path below <code>/Game</code>. Colons, backslashes, double slashes, and external filesystem paths are rejected. Invalid input resets to <code>/Game/BakedTextures</code> and cancels that bake attempt.</p></div><div><p>Base name</p><p>Maximum 30 characters. Use letters, numbers, underscore, and hyphen. Texture output automatically receives the standard <code>T_</code> prefix when missing.</p></div><div><p>Material Name</p><p>Prefixes the base with the selected override material. When no override is selected in single-index mode, it uses the resolved mesh-slot material name.</p></div><div><p>Mesh Name</p><p>Prefixes the base with the Static or Skeletal Mesh name. It is intentionally not added to combined Batch modes 1 and 2; Batch Per Mesh uses per-mesh naming.</p></div><div><p>UV suffix</p><p>UV0 keeps the normal name. UV1+ adds <code>_UV1</code>, <code>_UV2</code>, etc., preventing different UV-channel bakes from overwriting each other.</p></div><div><p>Material Index</p><p>Non-zero single-index output receives an index suffix where applicable, helping separate slot-specific results.</p></div><div><p>Pass suffix</p><p>Each output adds its pass identity, such as Albedo, Normal, Roughness, LightData, or ORM.</p></div></div>
-          <div class="name-example"><small>Example</small><code>/Game/BakedTextures/T_SM_Chair_Baked_UV1_Normal</code><p>Mesh prefix + base name + selected UV channel + pass name.</p></div>
-        </div>
-      </article>
-    </section>
-
-    <section class="section" id="controls">
-      <header class="section-head search-head"><div><p class="eyebrow">Complete control reference</p><h2>Every visible setting</h2></div><label>Find a control<input id="search" type="search" placeholder="Try UV, batch, normal…"></label></header>
-
-      <article class="control-group" id="bake-options">
-        <header><p>Session mode</p><h3>Bake Options</h3><span>Choose normal baking, the new Mesh Optimizer, scene batch processing, or the new GLB export path.</span></header>
-        <div class="control-list">
-          <div class="setting is-new-setting"><b>Export GLB <span class="setting-new-label">New</span></b><p>Exports all mesh actors currently selected in the Level Editor to one binary glTF file, including component transforms, assigned materials, and textures.</p></div>
-          <div class="setting is-new-setting"><b>Export JPG <span class="setting-new-label">New</span></b><p>Uses JPEG images for compatible GLB textures to reduce file size. Keep lossless output for normal maps and numeric masks when maximum accuracy matters.</p></div>
-          <div class="setting is-new-setting"><b>Compression / Quality <span class="setting-new-label">New</span></b><p>Compression accepts 0–99; higher compression creates smaller, lower-quality JPEGs. Displayed Quality is calculated as 100 − Compression.</p></div>
-          <div class="setting is-new-setting"><b>Mesh Optimizer <span class="setting-new-label">New</span></b><p>Creates a new one-slot Static Mesh, normalizes the final atlas into UV0, bakes every valid material index into combined textures, generates a material, and leaves the original mesh unchanged.</p></div>
-          <div class="setting is-new-setting"><b>Exist UV <span class="setting-new-label">Optimizer</span></b><p>Mesh Optimizer method that uses an authored source UV channel. The final optimized layout is stored in UV0.</p></div>
-          <div class="setting is-new-setting"><b>Repack UV <span class="setting-new-label">Optimizer</span></b><p>Mesh Optimizer method that preserves island shapes while repacking them into normalized 0–1 space.</p></div>
-          <div class="setting is-new-setting"><b>Generate UV Atlas <span class="setting-new-label">Optimizer</span></b><p>Mesh Optimizer method that creates a fresh atlas when existing UVs overlap, tile, or are unsuitable for combined output.</p></div>
-          <div class="setting"><b>Batch Baking</b><p>Bakes multiple scene mesh actors or components in one run. Select items in the viewport and add them to the Batch Assets List.</p></div>
-          <div class="setting"><b>Use Meshes Material</b><p>Uses every queued mesh's assigned material and slot mapping instead of one manually selected material.</p></div>
-          <div class="setting"><b>Batch Per Mesh</b><p>Exports a separate texture set for each queued mesh.</p></div>
-          <div class="setting"><b>Batch Assets List</b><p>Add Selected queues the current level selection. Remove Selected and Clear manage the list. The list is designed for level scene meshes.</p></div>
-        </div>
-      </article>
-
-      <article class="control-group" id="mesh-settings">
-        <header><p>Bake target</p><h3>Mesh Settings</h3><span>Select the target from the Level Editor scene, then define its material slot and UV data.</span></header>
-        <div class="control-list">
-          <div class="setting is-new-setting"><b>Select Mesh <span class="setting-new-label">New scene workflow</span></b><p>Select a Static Mesh or Skeletal Mesh actor/component in the Level Editor viewport and assign that scene selection. The component supplies its real transform, bounds, and material overrides.</p></div>
-          <div class="setting"><b>Material Index</b><p>Selects one material slot for single-index baking. With the panel Material empty, the baker checks this component slot first and then the mesh asset slot. Disabled by Batch Baking, Bake All Index, and Mesh Optimizer.</p></div>
-          <div class="setting"><b>Bake All Index</b><p>Bakes every material slot into the selected outputs. Available for single- and multi-slot meshes.</p></div>
-          <div class="setting"><b>UV Channel</b><p>Selects the mesh UV channel used by the bake. Use a unique, non-overlapping channel for Light Data and atlas-style output.</p></div>
-          <div class="setting"><b>World Space Correction</b><p>Preserves component transform, bounds, orientation, and primitive data for world-space, object-space, triplanar, and PixelNormalWS material logic.</p></div>
-          <div class="setting"><b>Validation</b><p>Optional UV preflight checking finite and non-empty UV data plus overlap problems. Disabled by default for faster routine baking.</p></div>
-        </div>
-      </article>
-
-      <article class="control-group" id="material-settings">
-        <header><p>Material source</p><h3>Material Settings</h3><span>Resolve the mesh-slot material or supply an override, then configure padding and generated-material output.</span></header>
-        <div class="control-list">
-          <div class="setting is-new-setting"><b>Material <span class="setting-new-label">New resolution</span></b><p>Optional in a normal single-index bake. Leave it empty to use the selected scene component or mesh asset slot. Choose a <code>/Game</code> material when that slot is empty or to intentionally override an occupied slot.</p></div>
-          <div class="setting"><b>Dilation UV</b><p>Enables edge-color expansion around UV islands to reduce seams and filtering artifacts. When disabled, Pixel Cover has no effect.</p></div>
-          <div class="setting is-new-setting"><b>Pixel Cover <span class="setting-new-label">New</span></b><p>Sets UV dilation from 0–64 pixels; the default is 3. For regular textures, 0 means unlimited coverage and 1–64 are exact pixel distances. Larger values can bleed into nearby islands. Light Data keeps unused pixels neutral white when set to 0.</p></div>
-          <div class="setting"><b>Auto Material</b><p>Creates a generated Unreal material using the newly baked textures.</p></div>
-          <div class="setting"><b>Assign to Mesh</b><p>Applies the generated material to the selected mesh or component when a compatible target is available.</p></div>
-        </div>
+      </div></div>
+<div class="setting"><b>World Space Correction</b><p>On by default; saved preset choices are retained. Preserves component transform, bounds, orientation, and primitive data for world-space, object-space, triplanar, and PixelNormalWS material logic.</p></div>
+<div class="setting" id="pixel-cover-details"><b>Dilation UV &amp; Pixel Cover</b>
+<p>Dilation UV copies the nearest valid island pixel outward to reduce seams and filtering artifacts, with straight extension at horizontal and vertical edges. Pixel Cover controls the padding distance; it does not resize or repack UV islands.</p>
+<div class="padding-examples"><figure class="tool-screenshot"><a href="assets/image/dilation-off.png" data-tool-screenshot aria-label="Enlarge Dilation off"><img src="assets/image/dilation-off.png" alt="Dilation off texture example" loading="lazy" decoding="async"></a><figcaption>Dilation off<span>Click to enlarge</span></figcaption><p>No padding beyond the UV islands.</p></figure><figure class="tool-screenshot"><a href="assets/image/pixel-cover-0.png" data-tool-screenshot aria-label="Enlarge Pixel Cover 0"><img src="assets/image/pixel-cover-0.png" alt="Pixel Cover 0 texture example" loading="lazy" decoding="async"></a><figcaption>Pixel Cover 0<span>Click to enlarge</span></figcaption><p>Unlimited padding for regular baked textures.</p></figure><figure class="tool-screenshot"><a href="assets/image/pixel-cover-10.png" data-tool-screenshot aria-label="Enlarge Pixel Cover 10"><img src="assets/image/pixel-cover-10.png" alt="Pixel Cover 10 texture example" loading="lazy" decoding="async"></a><figcaption>Pixel Cover 10<span>Click to enlarge</span></figcaption><p>Padding extends 10 pixels from valid island edges.</p></figure></div><div class="table-scroll"><table class="doc-table"><caption>Choose a Pixel Cover setting</caption><thead><tr><th>Setting</th><th>Padding behavior</th><th>When to use it</th></tr></thead><tbody>
+<tr><th>Dilation UV off</th><td>No edge expansion. Pixel Cover is disabled and has no effect.</td><td>Keep the rasterized island coverage without padding.</td></tr>
+<tr><th>Pixel Cover 0</th><td>Unlimited padding for regular baked textures, filling reachable empty texels.</td><td>Extend regular texture coverage across unused UV space. Lighting and normal background rules still apply.</td></tr>
+<tr><th>Pixel Cover 3 (default)</th><td>Expands valid island edges by 3 pixels.</td><td>A starting point for ordinary 1K test bakes.</td></tr>
+<tr><th>Pixel Cover 1–64</th><td>Sets the exact expansion distance in output pixels.</td><td>Increase when seams remain and islands have enough spacing. Reduce if neighboring islands cause color bleed.</td></tr>
+</tbody></table></div>
+<p><strong>Resolution and spacing:</strong> The same pixel distance occupies a smaller UV area at higher output resolutions. <span class="material-critical">Leave enough space between islands for filtering and mipmaps.</span> Padding applies to single-index, Bake All Material Slots, batch atlas, Batch Per Mesh and optimized texture outputs.</p>
+<p><strong>Light Data and normals:</strong> <span class="material-critical">Multiplicative Light Data keeps uncovered pixels neutral white.</span> <span class="material-critical">Separate Rendered Scene Light Data and unused normal pixels use black outside coverage/padding</span>; generated materials decode empty normal pixels as a flat normal. Padding follows rasterized UV coverage.</p>
+<p><strong>UV addressing:</strong> Regular material-only bakes preserve intentionally tiled or stacked UVs and use Wrap addressing. Lighting, decals and mesh overlays use Clamp. <span class="material-critical">Overlapping surfaces can produce conflicting output and longer captures; choose a unique lighting UV channel where available.</span> Validate Before Bake is optional; the additional Proceed/Cancel UV Channel Warning is disabled.</p>
+</div>
+<div class="setting"><b>Auto Material</b><div class="option-explanation" id="auto-material-details"><div class="table-scroll"><table class="doc-table auto-material-table"><caption>Generated materials and texture outputs</caption><thead><tr><th>Option / output</th><th>Behavior and controls</th><th>Example</th></tr></thead><tbody><tr><th scope="row">Auto Material off</th><td>Creates and saves textures only. No generated master or material instance.</td><td><figure class="tool-screenshot"><a href="assets/image/auto-material-textures.png" data-tool-screenshot aria-label="Enlarge Baked texture passes and material assets"><img src="assets/image/auto-material-textures.png" alt="Baked texture passes and material assets" loading="lazy" decoding="async"></a><figcaption>Baked texture passes and material assets<span>Click to enlarge</span></figcaption></figure></td></tr><tr><th scope="row">Auto Material on</th><td>Creates or rebuilds the generated master, then creates an instance connected to the selected passes, packing choices and UV channel. The Texture Coordinate node uses the selected channel, including UV1+. Rebaking refreshes generated masters and loaded instances with the correct color/data samplers.</td><td><figure class="tool-screenshot"><a href="assets/image/auto-material-master.png" data-tool-screenshot aria-label="Enlarge Generated master material"><img src="assets/image/auto-material-master.png" alt="Generated master material" loading="lazy" decoding="async"></a><figcaption>Generated master material<span>Click to enlarge</span></figcaption></figure></td></tr><tr><th scope="row">Material instance &amp; displacement</th><td><div id="displacement-details"><p>Select Displacement to expose these controls in the instance Displacement group. Supported in every lighting mode, including Existing Baked Lightmap.</p><ul class="material-parameter-list"><li><strong>Height_min (0):</strong> Minimum of the output range.</li><li><strong>Height_max (1):</strong> Maximum of the output range.</li><li><strong>Height_Contrast (1):</strong> Adjusts height contrast around the input midpoint.</li><li><strong>S_DisplacementStrength (1):</strong> Multiplies the adjusted height.</li></ul><p>Uses the effective source instance’s Magnitude, Center, tessellation and fade settings, including in batches that share a master. Compatible rebakes preserve scalar adjustments; neutral defaults preserve evaluated height.</p><p><code>lerp(Minimum, Maximum, (Height − 0.5) × Contrast + 0.5) × Strength</code>. The result is not clamped.</p><p class="material-critical">UV coverage and dilation apply. Sharpening is skipped to avoid height ringing. Check islands, padding and scaling before increasing strength.</p></div></td><td><figure class="tool-screenshot"><a href="assets/image/auto-material-instance.png" data-tool-screenshot aria-label="Enlarge Generated material instance"><img src="assets/image/auto-material-instance.png" alt="Generated material instance" loading="lazy" decoding="async"></a><figcaption>Generated material instance<span>Click to enlarge</span></figcaption></figure></td></tr></tbody></table></div><p class="material-critical">Enable Auto Material and rebake after changing shading or graph settings. Captured appearance retains BaseColor naming even when connected to Emissive; the actual Emissive pass remains separate.</p><p>Mesh Overlay diffuse is composited during material-only baking when Light Data is off. Rendered captures avoid a second diffuse composite; translucent overlays preserve opaque receiver coverage.</p></div></div><div class="setting"><b>Assign to Mesh</b><p>Available only with Auto Material enabled. After generation, assigns the material to the relevant Static or Skeletal Mesh component or asset slot.</p><ul class="support-list"><li>Single-index assignment targets the selected Material Index.</li><li>Batch assignment requires valid scene components. Batch Per Mesh handles each result independently.</li></ul></div>
+</div>
       </article>
 
       <article class="control-group" id="bake-settings">
-        <header><p>Texture output</p><h3>Bake Settings</h3><span>Control output size, packing, opacity, cleanup, normals, Light Data, and per-pass color handling.</span></header>
+        <header><h3>Bake Settings</h3></header><div class="tool-screenshots"><figure class="tool-screenshot"><a href="assets/BakeSettings.webp" data-tool-screenshot aria-label="Enlarge Bake Settings"><img src="assets/BakeSettings.webp" alt="Bake Settings in SPA Materials Baker" width="772" height="426" loading="lazy" decoding="async"></a><figcaption>Bake Settings<span>Click to enlarge</span></figcaption></figure></div>
         <div class="control-list">
-          <div class="setting"><b>Texture Format</b><p>Chooses the output texture format used for the generated assets.</p></div>
-          <div class="setting"><b>Texture Size</b><p>Sets the square bake resolution. Use 1K while testing and increase it for final output.</p></div>
+          
+          <div class="setting"><b>Texture Size</b><p>Sets the square output texture resolution. Use 1K while testing and increase it for final output. Low memory captures (1K) limits internal GPU captures separately; a larger output cannot restore detail lost at capture time.</p><div class="notice texture-size-attention"><b>!</b><p><strong>Higher resolution increases lighting bake time</strong>Increasing Texture Size adds more texels to sample and process. Doubling the width and height creates four times as many output pixels; lighting bake time and memory use can increase substantially. Actual timing depends on the scene, capture settings and hardware. Low memory captures (1K) caps internal capture resolution, not all output sampling work.</p></div></div>
           <div class="setting"><b>Pack ORM</b><p>Writes Ambient Occlusion into red, Roughness into green, and Metallic into blue.</p></div>
-          <div class="setting is-new-setting"><b>RGBA <span class="setting-new-label">New</span></b><p>Packs the real material Opacity Mask into Albedo/Diffuse alpha while preserving RGB. It automatically enables Base Color and Opacity Mask and saves one RGBA Albedo texture.</p></div>
+          <div class="setting"><b>2Sided(Sign)</b><p>Beneath ORM. Captures separate front/back lighting selected by TwoSidedSign in the generated material and also enables two-sided rendering. Off by default.</p><p>Useful for thin surfaces visible from both sides, such as curtains, fabric screens, leaves and signs, when the front and back need different baked lighting. Use ordinary 2side when both faces can share the same baked appearance.</p><div class="two-sided-examples"><figure class="tool-screenshot"><a href="assets/image/two-sided-sign-graph.png" data-tool-screenshot aria-label="Enlarge Front and back lighting graph"><img src="assets/image/two-sided-sign-graph.png" alt="Front and back lighting graph for 2Sided(Sign)" loading="lazy" decoding="async"></a><figcaption>Front and back lighting graph<span>Click to enlarge</span></figcaption></figure><figure class="tool-screenshot"><a href="assets/image/two-sided-sign-curtain.png" data-tool-screenshot aria-label="Enlarge Curtain example"><img src="assets/image/two-sided-sign-curtain.png" alt="Curtain example for 2Sided(Sign)" loading="lazy" decoding="async"></a><figcaption>Curtain example<span>Click to enlarge</span></figcaption></figure></div></div>
+          <div class="setting"><b>2side</b><p>Beside 2Sided(Sign). Enables ordinary two-sided rendering without separate front/back capture. Off by default. Both options are saved independently.</p></div>
+          <div class="setting is-new-setting"><b>RGBA </b><p>Packs the real material Opacity Mask into Albedo/Diffuse alpha while preserving RGB. It automatically enables Base Color and Opacity Mask and saves one RGBA Albedo texture.</p></div>
           <div class="setting"><b>Sharpness</b><p>Applies post-bake sharpening. High values can create ringing around hard edges and UV boundaries.</p></div>
-          <div class="setting is-new-setting"><b>Mask Threshold <span class="setting-new-label">Opacity</span></b><p>Controls standalone or RGBA-packed Opacity Mask cleanup. Zero preserves the evaluated grayscale mask; higher values create a harder black/white cutoff.</p></div>
-          <div class="setting"><b>Flat Normal</b><p>Produces a flat normal map instead of the evaluated material normal.</p></div>
+          <div class="setting is-new-setting"><b>Mask Threshold </b><p>Controls standalone or RGBA-packed Opacity Mask cleanup. Zero preserves the evaluated grayscale mask; higher values create a harder black/white cutoff.</p></div>
+          <div class="setting"><b>Normal Intensity</b><p>Final normal strength: 0 = flat, 1 = original, higher = stronger.</p></div>
           <div class="setting"><b>Invert Normal</b><p>Flips the normal map green channel for applications using the opposite Y convention.</p></div>
           <div class="setting"><b>Linear / Color</b><p>Each pass has a color-space checkbox: unchecked means Linear, checked means Color/sRGB.</p></div>
-          <div class="setting is-new-setting"><b>Bake Light Data into Albedo/Diffuse <span class="setting-new-label">New</span></b><p>Automatically enables Albedo and Light Data, multiplies the grayscale shadow mask into Albedo in linear color space, preserves alpha, and saves no separate Light Data texture. It does not bake direct-light brightness or color.</p></div>
-          <div class="setting is-new-setting"><b>Light Data Strength <span class="setting-new-label">New</span></b><p>Controls shadow darkness from 0–4: 0 removes darkening, 1 preserves the calculated mask, below 1 is lighter, and above 1 is darker. It affects separate and Albedo-combined output.</p></div>
+          
+          
         </div>
-      </article>
+      <section class="section dark" id="passes">
+      <header class="section-head"><div><h2>Output passes</h2></div></header><div class="table-scroll"><table class="doc-table output-pass-table"><caption>Output passes and lighting options</caption><thead><tr><th>Pass / option</th><th>Information</th></tr></thead><tbody><tr><th scope="row">Albedo / Diffuse</th><td>Evaluated base color. Can receive baked Light Data and decals.</td></tr><tr><th scope="row">Normal</th><td>Evaluated normal with Normal Intensity and Y inversion. Unused pixels are black outside coverage/padding; generated materials decode them as a flat normal.</td></tr><tr><th scope="row">Roughness</th><td>Standalone or green channel in packed ORM.</td></tr><tr><th scope="row">Metallic</th><td>Standalone or blue channel in packed ORM.</td></tr><tr><th scope="row">Specular</th><td>The material's specular response as a separate texture.</td></tr><tr><th scope="row">Ambient Occlusion</th><td>Standalone or red channel in packed ORM.</td></tr><tr><th scope="row">Light Data</th><td>Stores the selected source: shadow visibility, scene illumination, saved Lightmass or captured appearance. Save separately or enable Combine Lighting.</td></tr><tr><th scope="row">Displacement</th><td>Reads the real Displacement input. Generated instances expose range, contrast and strength in every lighting mode.</td></tr><tr><th scope="row">Opacity Mask</th><td>Reads the real material Opacity Mask input. Save it separately, clean it with Mask Threshold, or enable RGBA to pack it into Albedo alpha.</td></tr><tr><th scope="row">Emissive</th><td>Captures material emission with HDR-aware processing. Does not calculate emitted light on neighboring surfaces.</td></tr><tr><th scope="row">AlphaBlend</th><td>Custom pass capturing alpha blending through the AO route.</td></tr><tr><th scope="row">CustomMap</th><td>Custom output stored through the AO channel.</td></tr><tr><th scope="row">Combine Lighting</th><td>Combines selected lighting into Albedo/Diffuse in linear space, preserves alpha and omits a separate <code>_LightData</code> asset. Combined appearance uses <code>_BaseColor</code>.<figure class="tool-screenshot example-media"><a href="assets/image/lighting-combined.webp" data-tool-screenshot aria-label="Enlarge Combine Lighting example"><img src="assets/image/lighting-combined.webp" alt="Combine Lighting example" loading="lazy" decoding="async"></a><figcaption>Combine Lighting example<span>Click to enlarge</span></figcaption></figure></td></tr><tr><th scope="row">Separate Light Data</th><td>Turn Combine Lighting off to save it separately. Scene Lights uses a lighting multiplier. Rendered Scene saves full appearance as HDR Light Data; the generated material uses it directly to avoid applying albedo twice.<figure class="tool-screenshot example-media"><a href="assets/image/lighting-separate.webp" data-tool-screenshot aria-label="Enlarge Separate Light Data example"><img src="assets/image/lighting-separate.webp" alt="Separate Light Data example" loading="lazy" decoding="async"></a><figcaption>Separate Light Data example<span>Click to enlarge</span></figcaption></figure></td></tr></tbody></table></div>
+      <div class="orm"><div><h3>ORM channel map</h3><p>Import and sample the combined map as Linear.</p></div><div><span class="red"><b>R</b>Ambient Occlusion</span><span class="green"><b>G</b>Roughness</span><span class="blue"><b>B</b>Metallic</span></div></div>
+<div class="important"><b>Unlit export behavior</b><p>Captured Unlit appearance uses BaseColor naming even though it feeds Emissive. Unused Normal, Roughness, Metallic, Specular, AO and ORM exports are skipped. Selected Displacement and Opacity Mask remain available. Separate ordinary albedo is not exported when unused by the Unlit result.</p></div>    </section><section class="section new-capability-section" id="decals"><header class="section-head"><div><h2>Decals &amp; Mesh Overlay</h2></div></header>
+<div class="option-explanation" id="decal-details"><p>Bake Decals and Mesh Overlay are independent. Select the level receiver and the required output passes, then enable the projection sources.</p>
+<section class="projection-subsection" id="bake-decals-details"><h3>Bake Decals</h3><div class="table-scroll"><table class="doc-table projection-table"><thead><tr><th>Decals</th><th>Height Blend</th></tr></thead><tbody><tr><td><figure class="tool-screenshot example-media"><a href="assets/image/decal-example.webp" data-tool-screenshot aria-label="Enlarge Decals example"><img src="assets/image/decal-example.webp" alt="Decals example" loading="lazy" decoding="async"></a><figcaption>Decals example<span>Click to enlarge</span></figcaption></figure></td><td><figure class="tool-screenshot example-media"><a href="assets/image/decal-height-blend.gif" data-tool-screenshot aria-label="Enlarge Decals Height Blend"><img src="assets/image/decal-height-blend.gif" alt="Decals Height Blend" loading="lazy" decoding="async"></a><figcaption>Decals Height Blend<span>Click to enlarge</span></figcaption></figure></td></tr><tr><td>Evaluates decal graphs, UV arithmetic, tint, instance parameters and static switches before projecting selected passes. Respects Sort Order. Deferred-decal UV correction is fixed at 180°, Flip U on and Flip V off; rotation and flip controls are not exposed. Rendered Scene is a separate lighting workflow.</td><td><div class="height-pass-attention" role="note"><strong>Displacement pass required</strong><p>Always enable the Displacement pass when using Height Blend.</p></div>Adjust the decal’s own Strength and Contrast to blend coverage with receiver height. Defaults: Strength 0.4, Contrast 3. Strong contrast can suppress coverage on raised bricks.</td></tr></tbody></table></div></section><section class="projection-subsection" id="mesh-overlay-details"><h3>Mesh Overlay</h3><div class="table-scroll"><table class="doc-table projection-table"><thead><tr><th>Mesh Overlay</th><th>Height Blend</th></tr></thead><tbody><tr><td><figure class="tool-screenshot example-media"><a href="assets/image/mesh-overlay-example.webp" data-tool-screenshot aria-label="Enlarge Mesh Overlay example"><img src="assets/image/mesh-overlay-example.webp" alt="Mesh Overlay example" loading="lazy" decoding="async"></a><figcaption>Mesh Overlay example<span>Click to enlarge</span></figcaption></figure></td><td><figure class="tool-screenshot example-media"><a href="assets/image/mesh-overlay-height-blend.gif" data-tool-screenshot aria-label="Enlarge Mesh Overlay Height Blend"><img src="assets/image/mesh-overlay-height-blend.gif" alt="Mesh Overlay Height Blend" loading="lazy" decoding="async"></a><figcaption>Mesh Overlay Height Blend<span>Click to enlarge</span></figcaption></figure></td></tr><tr><td>Projects compatible planar mesh cards onto the receiver. See the combined notes below for mapping, projection depth and output limits.</td><td><div class="height-pass-attention" role="note"><strong>Displacement pass required</strong><p>Always enable the Displacement pass when using Height Blend.</p></div>Uses independent Height Blend, Strength and Contrast controls. Defaults: Strength 0.4, Contrast 3. Adjust coverage against the receiver height; temporarily disable it when diagnosing missing diffuse detail.</td></tr></tbody></table></div></section>
+<section class="projection-notes"><h4>Projection and output notes</h4>
+<p><strong>Mesh Overlay:</strong> Flattens nearby compatible planar Static Mesh cards using triangles and UV0. Masked materials preserve holes; Translucent materials blend by opacity. Ordinary 3D props remain physical geometry.</p>
+<p><strong>Projection Depth (cm):</strong> Applies only to Mesh Overlay. <span class="critical-note">Keep the distance just large enough to reach the intended receiver; excessive depth can project through thin walls.</span></p>
+<p><strong>Supported mapping:</strong> <span class="critical-note">Instanced cards, refraction, animated WPO and world/vertex/instance-dependent overlay mapping are unsupported.</span> Hide original cards when comparing the flattened result.</p>
+<p><strong>Output passes:</strong> Only selected passes are written. Normals are converted to receiver tangent space, and Emissive retains HDR intensity. AO, Roughness and Metallic feed ORM; opacity feeds RGBA. Unlit output skips unused surface-data exports.</p>
+<p><strong>Reflections:</strong> Rendered Scene can capture roughness-driven highlights, but they become part of a fixed texture. <span class="critical-note">Changing the camera cannot recreate the original moving reflection.</span></p>
+<p><strong>Height Blend:</strong> <span class="critical-note">Height Blend can independently reduce diffuse coverage.</span> Temporarily disable it when diagnosing missing surface detail.</p></section></div></section></article>
     </section>
 
-    <section class="section dark" id="passes">
-      <header class="section-head"><div><p class="eyebrow">Texture data map</p><h2>Output passes</h2></div><p>Select at least one pass. Treat masks and numeric surface data as Linear unless a target pipeline specifically requires otherwise.</p></header>
-      <div class="pass-grid">
-        <article><span>01</span><h3>Albedo / Diffuse</h3><p>Evaluated base color. Can receive baked Light Data and decals.</p></article>
-        <article><span>02</span><h3>Normal</h3><p>Evaluated material normal, with optional flat output and Y inversion.</p></article>
-        <article><span>03</span><h3>Roughness</h3><p>Standalone or green channel in packed ORM.</p></article>
-        <article><span>04</span><h3>Metallic</h3><p>Standalone or blue channel in packed ORM.</p></article>
-        <article><span>05</span><h3>Specular</h3><p>The material's specular response as a separate texture.</p></article>
-        <article><span>06</span><h3>Ambient Occlusion</h3><p>Standalone or red channel in packed ORM.</p></article>
-        <article class="is-new-pass"><span>New</span><h3>Light Data</h3><p>Linear grayscale shadow/visibility multiplier from visible Directional, Point, Spot, and Rect lights. Strength ranges from 0–4, and the mask can be saved separately or multiplied into Albedo.</p></article>
-        <article><span>08</span><h3>Displacement</h3><p>Reads the real material Displacement path directly.</p></article>
-        <article class="is-new-pass"><span>New</span><h3>Opacity Mask</h3><p>Reads the real material Opacity Mask input. Save it separately, clean it with Mask Threshold, or enable RGBA to pack it into Albedo alpha.</p></article>
-        <article><span>10</span><h3>Emissive</h3><p>Captures emissive output with HDR-aware processing.</p></article>
-        <article><span>11</span><h3>AlphaBlend</h3><p>Custom pass capturing alpha blending through the AO route.</p></article>
-        <article><span>12</span><h3>CustomMap</h3><p>Custom output stored through the AO channel.</p></article>
-      </div>
-      <div class="orm"><div><p class="eyebrow">Packed data texture</p><h3>ORM channel map</h3><p>Import and sample the combined map as Linear.</p></div><div><span class="red"><b>R</b>Ambient Occlusion</span><span class="green"><b>G</b>Roughness</span><span class="blue"><b>B</b>Metallic</span></div></div>
-    </section>
+<article class="control-group" id="lighting-settings"><header><h3>Lighting &amp; Shadows</h3></header><div class="tool-screenshots"><figure class="tool-screenshot"><a href="assets/lightandShadow.webp" data-tool-screenshot aria-label="Enlarge Lighting & Shadows"><img src="assets/lightandShadow.webp" alt="Lighting & Shadows in SPA Materials Baker" width="768" height="331" loading="lazy" decoding="async"></a><figcaption>Lighting & Shadows<span>Click to enlarge</span></figcaption></figure></div><div class="control-list">
+<div class="setting"><b>Lighting Source</b><p>Shadows, Scene Lights, Rendered Scene (Preview), or Existing Baked Lightmap. Enable Light Data or Combine Lighting to activate the controls.</p><div class="option-explanation" id="light-data-details"><div class="guide-body"><p class="guide-lead">You can bake the scene’s Lumen lighting through Rendered Scene (Preview); the tool is not limited to copying saved Lightmass lightmaps. With Lumen active in the scene, this mode captures its global illumination and reflections into textures. Existing Baked Lightmap is the separate workflow for reading a built and saved Lightmass bake. Choose the source first, then decide how to display or combine the result.</p><div class="table-scroll"><table class="doc-table"><caption>Choose a lighting source</caption><thead><tr><th>Source</th><th>What is captured</th><th>Use it for</th></tr></thead><tbody><tr><th>Shadows</th><td>Grayscale shadow visibility from supported GPU captures; unsupported receivers use an approximation.</td><td>A shadow multiplier with live surface lighting.<p><strong>Shadow Strength</strong>: Applies to Shadows: 0 removes darkening, 1 preserves it, higher values darken partial shadows. It is not a brightness control for saved lightmaps or GPU scene lighting.</p></td></tr><tr><th>Scene Lights</th><td><b>Light and Shadows</b>: direct lights, sky and shadows. <b>+ Postprocess</b>: adds inherited scene GI and indirect-light settings.</td><td>Diffuse lighting combined with albedo once.</td></tr><tr><th>Rendered Scene (Preview)</th><td>Visible rendered shading, including Lumen global illumination and reflections when active in the scene, or existing Lightmass lighting. Captures supported scene effects.</td><td>Captured appearance, usually with Unlit Material. Reflections stay fixed to capture views.</td></tr><tr><th>Existing Baked Lightmap</th><td>Saved LOD0 Lightmass surface lighting on level Static Mesh components. Excludes Lumen, volumetric lightmaps and stationary direct lighting.</td><td>Reuse a built and saved Lightmass bake.</td></tr></tbody></table></div><h4>Light types and emissive objects</h4><p>Point, Spot and Rect Light components are supported, including multiple components inside Blueprint actors. Directional and Sky Lights are also handled. Lights must be registered, visible and affect the world. CPU fallback approximates Rect Light area lighting; it does not reproduce every renderer feature.</p><div class="table-scroll"><table class="doc-table"><caption>Emissive lighting on surrounding surfaces</caption><thead><tr><th>Method</th><th>Emissive contribution</th><th>Requirements and notes</th></tr></thead><tbody><tr><th>Light and Shadows</th><td>No emissive GI; GI is disabled.</td><td>The Emissive pass records the emitting material itself; it does not calculate illumination on neighboring objects.</td></tr><tr><th>+ Postprocess</th><td>Included when the scene GI captures it.</td><td>Scene Lights GPU capture requires a registered opaque Default Lit Static Mesh without a Substrate or Nanite override material. Unsupported receivers log a CPU fallback, excluding actual GI. Verify emissive GI in the scene before baking.</td></tr><tr><th>Rendered Scene</th><td>Included when present in rendered shading.</td><td>Receiver validation can reject unreliable surfaces. This is a preview workflow, not a guaranteed pixel match to the editor camera. </td></tr><tr><th>Existing Baked Lightmap</th><td>Only emission included in the saved Lightmass bake.</td><td>Build and save Lightmass first. Use a valid lightmap coordinate channel with non-collapsed islands, adequate resolution and padding. This reads saved Lightmass data, unlike Rendered Scene.</td></tr></tbody><tfoot><tr><td colspan="3"><strong>Shared requirements:</strong> Use a level receiver and unique, non-overlapping bake UVs. Hidden lights and occluders are ignored. Emissive GI depends on scene settings and renderer limitations.</td></tr></tfoot></table></div></div><div class="height-pass-attention" role="note"><strong>Important limitation: complex meshes at 2K / 4K</strong><p>Full-scene lighting captures with Rendered Scene (Preview) on complex meshes at 2K or 4K may produce localized artifacts or incomplete coverage in some areas. Test a smaller bake first and inspect the final textures before replacing production materials.</p></div><div class="important"><b>Rendered Scene capture time</b><p>The progress surface count represents capture groups, not material slots or texture passes. Fragmented geometry, UV layout, output resolution and retries affect it. Draft lowers sampling work but cannot remove surface grouping cost. Overlapping/tiled UVs can take longer and produce conflicting texels; use the mesh's unique lighting channel.</p></div></div></div>
 
-    <section class="section new-capability-section" id="decals">
-      <header class="section-head"><div><p class="eyebrow">New in this version · Layered surface detail</p><h2>Decal baking</h2></div><p>Bake visible decal actors and compatible masked mesh overlays into passes already selected for the material bake.</p></header>
-      <div class="compare">
-        <article class="recommended"><small>Recommended</small><h3>Texture Projection</h3><p>Fast and stable. Projects decal texture inputs into Albedo, Normal, Roughness, Metallic, AO, ORM, Opacity Mask, and Displacement.</p><ul><li>Works in single and batch baking</li><li>Supports rotation and UV flips</li><li>Best for texture-driven decal materials</li></ul></article>
-        <article class="experimental"><small>Experimental</small><h3>Final Render Capture</h3><p>Attempts to capture Unreal's rendered decal contribution for complex materials. It is slower and may be less predictable.</p><ul><li>For complex decal graphs</li><li>Falls back when capture is invalid</li><li>Disables projection orientation controls</li></ul></article>
-      </div>
-      <div class="decal-grid">
-        <article><h3>Height Blend</h3><p>Uses baked receiver Height/Displacement to reduce decal influence on raised detail.</p><dl><dt>Strength</dt><dd>0.4 subtle default · 1 full fade · above 1 stronger cutoff</dd><dt>Contrast</dt><dd>1 linear · 3 default · 4–8 sharper · 10+ hard cutoff</dd></dl></article>
-        <article><h3>Projection orientation</h3><p>Texture Projection opens with the tested deferred-decal orientation.</p><dl><dt>Rotate</dt><dd>0°, 90°, 180°, or 270° · default 180°</dd><dt>Flip U</dt><dd>Enabled by default</dd><dt>Flip V</dt><dd>Optional vertical mirror</dd></dl></article>
-        <article><h3>Masked Mesh Overlays</h3><p>Flattens nearby planar Static Mesh cards into the receiver using their triangles and UV0.</p><dl><dt>Included</dt><dd>Masked/translucent materials or readable opacity textures</dd><dt>Depth</dt><dd>Maximum receiver search distance in centimeters</dd></dl></article>
-      </div>
-    </section>
+<div class="setting"><b>Auto Exposure / Exposure EV</b><p>Auto Exposure takes capture-view exposure once for the bake. Exposure EV: +1 doubles brightness; −1 halves it. Capture views, reflections and GI can affect appearance matching.</p><p>Draft, Standard and High set capture budgets and UV sampling. Ray counts apply to CPU fallback; custom GPU capture sampling uses its own frame budget. Pixel Samples controls UV sampling. Lumen quality follows the scene post-process settings or engine defaults.</p></div><div class="setting"><div class="table-scroll"><table class="doc-table material-mode-table"><caption>Choose a generated material mode</caption><thead><tr><th>Material mode</th><th>How it behaves</th><th>Use it for</th><th>Graph example</th></tr></thead><tbody><tr><th>Default Lit</th><td>With Unlit Material and Baked Emissive off, baked surface textures respond to scene lights. Lighting already captured into Base Color can be shaded again.</td><td>Surface-material bakes that should react to changing lights, such as ordinary walls, props, wood and metal. Prefer surface textures without combined lighting when you want live lighting to determine the result.</td><td><figure class="tool-screenshot material-graph-preview"><a href="assets/image/material-default-lit.png" data-tool-screenshot aria-label="Enlarge Default Lit"><img src="assets/image/material-default-lit.png" alt="Default Lit material graph" loading="lazy" decoding="async"></a><figcaption>Default Lit<span>Click to enlarge</span></figcaption></figure></td></tr><tr><th>Unlit Material</th><td>Displays captured appearance through exposure-compensated Emissive. Unused Normal, Roughness, Metallic, Specular, AO and ORM exports are skipped; selected Displacement and Opacity Mask remain available.</td><td>Preserving baked scene appearance, including captured lighting and reflections, without additional surface shading from live lights. Useful with Rendered Scene (Preview); captured reflections remain fixed to capture views.</td><td><figure class="tool-screenshot material-graph-preview"><a href="assets/image/material-unlit.png" data-tool-screenshot aria-label="Enlarge Unlit Material"><img src="assets/image/material-unlit.png" alt="Unlit Material material graph" loading="lazy" decoding="async"></a><figcaption>Unlit Material<span>Click to enlarge</span></figcaption></figure><figure class="tool-screenshot material-graph-preview"><a href="assets/image/material-unlit-displacement.png" data-tool-screenshot aria-label="Enlarge Unlit with Displacement"><img src="assets/image/material-unlit-displacement.png" alt="Unlit with Displacement material graph" loading="lazy" decoding="async"></a><figcaption>Unlit with Displacement<span>Click to enlarge</span></figcaption></figure></td></tr><tr><th>Baked Emissive</th><td>Adds baked lighting through exposure-compensated Emissive in a Default Lit material while scene lights continue to shade Base Color. Separate from exporting the source material's actual Emissive pass.</td><td>Combining a baked lighting contribution with live surface lighting. Check brightness where baked and live lighting overlap.</td><td><figure class="tool-screenshot material-graph-preview"><a href="assets/image/material-baked-emissive.png" data-tool-screenshot aria-label="Enlarge Baked Emissive"><img src="assets/image/material-baked-emissive.png" alt="Baked Emissive material graph" loading="lazy" decoding="async"></a><figcaption>Baked Emissive<span>Click to enlarge</span></figcaption></figure></td></tr></tbody></table></div><p>Unlit Material and Baked Emissive are mutually exclusive. Enable Auto Material and rebake after changing modes to update the generated material graph.</p></div>
+
+<div class="setting quality-setting"><b>Quality / Optimization</b><div class="quality-memory"><b>Low memory captures (1K)</b><p>On by default. Caps internal GPU captures at 1024 pixels to reduce memory use. Output Texture Size is unchanged. Reflections and surface detail may soften, especially in shared wall/floor frames. Turn off for the original capture density; saved preset choices are respected.</p></div><p>Draft / Standard / High set capture budgets and UV samples. They do not force Lumen quality: resolved user post-process settings or engine defaults are inherited. <a href="#capture-quality">See capture budgets</a>.</p><div class="quality-comparison" aria-label="Bake quality comparison"><figure class="tool-screenshot"><a href="assets/image/QS_Draft.webp" data-tool-screenshot aria-label="Enlarge Draft quality comparison"><img src="assets/image/QS_Draft.webp" alt="Draft bake quality example" width="1148" height="645" loading="lazy" decoding="async"></a><figcaption>Draft<span>Click to enlarge</span></figcaption><p class="quality-card-detail"><strong>Quick preview</strong>Ray: 1 &middot; Pixel Sample: 1<br>Shortest bake time; less temporal averaging.</p></figure><figure class="tool-screenshot"><a href="assets/image/QS_Standard.webp" data-tool-screenshot aria-label="Enlarge Standard quality comparison"><img src="assets/image/QS_Standard.webp" alt="Standard bake quality example" width="1148" height="645" loading="lazy" decoding="async"></a><figcaption>Standard<span>Click to enlarge</span></figcaption><p class="quality-card-detail"><strong>Balanced quality</strong>Ray: 8 &middot; Pixel Sample: 1<br>More temporal averaging; longer bake time.</p></figure><figure class="tool-screenshot"><a href="assets/image/QS_HighQuality.webp" data-tool-screenshot aria-label="Enlarge High quality comparison"><img src="assets/image/QS_HighQuality.webp" alt="High bake quality example" width="1148" height="645" loading="lazy" decoding="async"></a><figcaption>High<span>Click to enlarge</span></figcaption><p class="quality-card-detail"><strong>Final quality</strong>Ray: 32 &middot; Pixel Sample: 4<br>Most averaging and UV sampling; longest bake time.</p></figure></div><p class="quality-time-note">Higher quality increases bake time: Standard uses more capture frames than Draft, while High adds more frames and UV samples. Compare the examples at full size to inspect surface detail and shadow smoothness; actual bake time depends on scene complexity, output resolution and hardware.</p><section class="section" id="capture-quality">
+      
+      <div class="table-scroll"><table class="doc-table"><caption>Lumen GPU lighting capture budgets</caption><thead><tr><th>Quality</th><th>Fresh capture frames</th><th>UV samples</th></tr></thead><tbody><tr><th>Draft</th><td>32</td><td>1</td></tr><tr><th>Standard</th><td>64</td><td>1</td></tr><tr><th>High</th><td>128</td><td>4</td></tr></tbody></table></div>
+      <p>Eligible history refreshes use 8 frames; the last 8 frames are averaged. This is transient capture history within a bake, not a persistent lighting-result cache. Custom GPU Capture Samples use 8 frames per sample with Lumen. These budgets do not replace the scene’s Lumen quality settings.</p>
+      <div class="notice quality-attention"><b>!</b><p><strong>Bake-only Lumen AO adjustment</strong>GPU baking temporarily disables Lumen Short Range AO to avoid the reproduced blocky dark AO patches, then restores the original console-variable value and priority on exit. CPU UV and Existing Baked Lightmap workflows retain their behavior. Existing generated textures need a rebake to receive the change.</p></div>
+      <p>Current builds reduce memory and redundant work through exact staging readback, compact CPU buffers, sequential height variants, skipped zero-contribution height captures and release of completed-phase resources. Shared planar framing remains. Black out covered internal faces and the persistent lighting-result cache have been removed; legacy preset values have no effect. Bake time depends on scene complexity, settings and hardware.</p>
+      <div class="important"><p>Legacy and Substrate Slab BaseColor, Roughness, AO and Normal passed small bake checks; full Substrate workflows are not universally validated. Successful builds and native checks do not establish live editor acceptance for every scene.</p></div>
+    </section></div>
+
+
+</div></article>
+    
+    
+
+    
 
     <section class="section alt" id="export">
-      <header class="section-head"><div><p class="eyebrow">Portable and predictable assets</p><h2>GLB export, paths, and naming</h2></div><p>Export selected scene actors to a portable GLB, or create Unreal texture and material assets below a valid <code>/Game/…</code> path.</p></header>
-      <article class="glb-export-callout">
-        <div><span>New in this version</span><h3>Export selected scene actors to GLB</h3><p>Select one or more Static or Skeletal Mesh actors/components in the Level Editor and enable Export GLB. The baker writes one binary glTF file with component transforms, assigned materials, and textures.</p></div>
-        <ul><li><strong>Export JPG</strong> uses JPEG for compatible embedded textures.</li><li><strong>Compression</strong> accepts 0–99; displayed Quality is 100 − Compression.</li><li>Prefer lossless images for normal maps and numeric masks when accuracy is more important than size.</li></ul>
-      </article>
+      <header class="export-section-heading"><h2>Export paths and naming</h2></header><div class="tool-screenshots"><figure class="tool-screenshot"><a href="assets/Exporpath_Naming.webp" data-tool-screenshot aria-label="Enlarge Export paths and naming"><img src="assets/Exporpath_Naming.webp" alt="Export paths and naming in SPA Materials Baker" width="766" height="143" loading="lazy" decoding="async"></a><figcaption>Export paths and naming<span>Click to enlarge</span></figcaption></figure></div>
+      
+      
+      
       <div class="export-grid">
-        <div class="path"><small>Export Path</small><code>/Game/BakedTextures</code><p>├─ BakedTexture_Albedo<br>├─ BakedTexture_Normal<br>└─ BakedTexture_ORM</p></div>
+        <div class="path"><small>Export Path</small><code>/Game/BakedTextures</code><p>├─ T_Wall01_BaseColor<br>├─ T_Wall01_Normal<br>└─ T_Wall01_ORM</p></div>
         <div class="rules">
-          <article><span>Base</span><div><h3>Baked Texture Name</h3><p>Maximum 30 characters. Use letters, numbers, underscore, and hyphen.</p></div></article>
-          <article><span>Path</span><div><h3>Mesh Path / Material Path</h3><p>Saves output relative to the selected mesh or material rather than the entered folder.</p></div></article>
-          <article><span>Suffix</span><div><h3>Material Name</h3><p>Adds the material name to output assets.</p></div></article>
-          <article><span>Batch</span><div><h3>Mesh Name + Passes Name</h3><p>Adds mesh and pass names for clear, collision-resistant batch output.</p></div></article>
+          <article><div><h3>Baked Texture Name</h3><p>Maximum 30 characters. Use letters, numbers, underscore, and hyphen.</p></div></article>
+          <article><div><h3>Mesh Path / Material Path</h3><p>Saves output relative to the selected mesh or material rather than the entered folder.</p></div></article>
+          <article><div><h3>Material Name</h3><p>Uses T_&lt;MaterialName&gt;_&lt;Pass&gt;, without extra BakedTexture text.</p></div></article>
+          <article><div><h3>Mesh Name + Passes Name</h3><p>Uses the mesh/scene name and pass for per-mesh output. Keep differently lit instances uniquely named.</p></div></article>
         </div>
       </div>
-    </section>
+    <div><p>Use a valid <code>/Game/…</code> export folder and a short base name. Press Bake, then inspect seams, normal orientation, color space, and asset naming.</p></div><article class="deep-guide is-new-guide" id="naming-details"><div class="guide-title"><div><h3>Naming and path rules</h3></div></div><div class="guide-body"><div class="naming-table"><div><b>Rule</b><b>Behavior</b></div><div><p>Export Path</p><p>Use a valid Unreal package folder below <code>/Game</code>, not a Windows filesystem path.</p></div><div><p>Mesh Name / Material Name</p><p>Uses <code>T_&lt;Name&gt;_&lt;Pass&gt;</code>. Source-name mode does not append the extra <code>BakedTexture</code> text. Scene labels are used where the naming workflow provides them.</p></div><div><p>Custom base name</p><p>Baked Texture Name supplies the custom base. Use up to 30 letters, numbers, underscores or hyphens. A missing texture prefix is added.</p></div><div><p>UV / slot suffixes</p><p>UV1+ and applicable slot suffixes distinguish variants. Use unique scene-instance names when baked lighting differs.</p></div><div><p>Prefixes</p><p><code>T_</code> textures, <code>M_</code> masters, <code>MI_</code> instances.</p></div><div><p>Pass identity</p><p><code>_BaseColor</code> for albedo or captured appearance; <code>_Normal</code>, <code>_ORM</code>, <code>_Displacement</code>, <code>_OpacityMask</code>, and <code>_LightData</code> for separately saved lighting. Actual Emissive remains separate.</p></div></div><div class="name-example"><small>Mesh-name examples</small><code>/Game/BakedTextures/T_Wall01_BaseColor<br>/Game/BakedTextures/T_Wall01_Normal<br>/Game/BakedTextures/T_Wall01_Displacement</code><p>Source name + pass; no extra BakedTexture text.</p></div></div></article><div class="important"><b>Overwrite existing files without asking</b><p>Enable this export option to replace matching outputs without a prompt. Leave it off to keep overwrite confirmation. Presets store the choice.</p></div></section>
 
     <section class="section" id="troubleshooting">
-      <header class="section-head"><div><p class="eyebrow">Fast diagnosis</p><h2>Troubleshooting</h2></div><p>Most incorrect results come from asset location, selection state, UV layout, color space, or an experimental capture path.</p></header>
-      <div class="faq">
-        <details open><summary>Bake button is disabled <b>+</b></summary><p>Select a Static or Skeletal Mesh component in the Level Editor, choose at least one pass, and enter a valid <code>/Game</code> path. A panel Material is optional when the selected Material Index slot already contains a valid material. In Batch mode, add selected scene meshes to the list.</p></details>
-        <details><summary>Mesh or material cannot be selected <b>+</b></summary><p>The mesh target now comes from the Level Editor scene. Select the intended actor/component in the viewport and assign it in Mesh Settings. Panel override materials and created Unreal assets must still be below <code>/Game</code>.</p></details>
-        <details><summary>Mesh Optimizer cannot run <b>+</b></summary><p>Use a Static Mesh with valid LOD0 geometry and material slots. Choose exactly one optimizer UV method: Exist UV, Repack UV, or Generate UV Atlas. Skeletal Meshes are not supported by Mesh Optimizer.</p></details>
-        <details><summary>Texture contains overlaps or smears <b>+</b></summary><p>Choose a non-overlapping UV channel, enable Validation, or use Repack UV / Generate UV Atlas.</p></details>
-        <details><summary>World-aligned material looks different <b>+</b></summary><p>Enable World Space Correction and use the intended scene component so transform and bounds are preserved.</p></details>
-        <details><summary>Seams appear around UV islands <b>+</b></summary><p>Enable Dilation UV and start with the default 3 Pixel Cover. Increase it carefully when islands have enough spacing. Use 0 only when you want unlimited coverage; reduce the value if nearby islands begin to bleed.</p></details>
-        <details><summary>Light Data is incorrect <b>+</b></summary><p>Use a unique, non-overlapping UV channel and a selected scene component. Verify that the intended Directional, Point, Spot, or Rect lights and shadow-casting objects are visible in the editor. Hidden lights and occluders are intentionally ignored; areas with no relevant light remain neutral white.</p></details>
-        <details><summary>Decal orientation is wrong <b>+</b></summary><p>Try 0°, 90°, 180°, or 270°, then adjust Flip U and Flip V. The default is 180° with Flip U enabled.</p></details>
-        <details><summary>Final Render Capture is unstable <b>+</b></summary><p>Switch to Texture Projection. Final Render Capture is experimental and automatically falls back when capture data is invalid.</p></details>
-        <details><summary>ORM channels look wrong <b>+</b></summary><p>Use Linear sampling and verify R = AO, G = Roughness, B = Metallic.</p></details>
-        <details><summary>RGBA alpha or Opacity Mask is wrong <b>+</b></summary><p>Verify that the source material uses the real Opacity Mask input. RGBA automatically enables Albedo and Opacity Mask and stores the mask in Albedo alpha. Set Mask Threshold to 0 to preserve grayscale output, or raise it for a harder cutoff.</p></details>
-        <details><summary>GLB textures look compressed <b>+</b></summary><p>Disable Export JPG for lossless texture images, especially normal maps and numeric masks. If JPEG is required, reduce Compression to increase the displayed Quality.</p></details>
-      </div>
-      <div class="support"><div><p class="eyebrow">When requesting support</p><h2>Capture the setup, not only the error.</h2><p>Include Unreal version, mesh and material type, enabled modes, UV channel, passes, and the exact dialog message.</p></div><a class="button primary" href="https://forums.unrealengine.com/">Unreal forums ↗</a></div>
-    </section>
+      <header class="section-head"><div><h2>Troubleshooting</h2></div></header>
+      <div class="faq"><details open><summary>Bake is disabled or the mesh is missing<b>+</b></summary><p>Assign the intended Static or Skeletal Mesh actor/component from the Level Editor in Mesh Settings. Choose at least one pass and a valid <code>/Game</code> output path. A panel Material is optional when the selected slot has a valid material. In Batch Meshes, use Add Selected to queue scene components.</p></details><details><summary>UV Builder is unavailable<b>+</b></summary><p>Use Single Mesh with valid Static Mesh LOD0 geometry and at least one material slot. Skeletal Meshes, Rendered Scene (Preview) and Existing Baked Lightmap are not supported by UV Builder. See <a href="#optimizer-details">UV Builder requirements</a>.</p></details><details><summary>Textures overlap, smear or show island seams<b>+</b></summary><p>For lighting and projection, choose unique UVs across every included surface. Intentional tiling or stacking can work for material-only bakes; validation is optional. Enable Dilation UV and start with Pixel Cover 3. Increase padding only when island spacing allows; reduce it if neighboring colors bleed. Pixel Cover 0 means unlimited padding for regular textures. See <a href="#pixel-cover-details">padding examples</a>.</p></details><details><summary>Lighting bakes take too long<b>+</b></summary><p>Texture Size, capture quality, geometry, UV layout and receiver retries affect time. Test at 1K with Draft, then raise settings after checking the result. Low memory captures (1K) limits capture resolution; it does not eliminate output sampling or surface-grouping costs. See <a href="#capture-quality">capture budgets</a>.</p></details><details><summary>Reflections are soft or change across the baked surface<b>+</b></summary><p>Low memory captures (1K) limits internal capture size independently of Texture Size. Disable it for a small comparison bake if more capture detail is needed. Baked reflections remain fixed to capture views; increasing output resolution or quality does not recreate moving reflections.</p></details><details><summary>World-aligned material placement changes<b>+</b></summary><p>Enable World Space Correction and assign the intended scene component so its transform and bounds are preserved.</p></details><details><summary>Lighting looks different from the scene<b>+</b></summary><p>Check the <a href="#light-data-details">lighting source</a> and generated material mode. Shadows stores visibility; Scene Lights captures illumination; Rendered Scene captures appearance; Existing Baked Lightmap reads saved Lightmass. Default Lit can shade captured BaseColor again. Inspect logs for a CPU fallback, which excludes actual GI.</p></details><details><summary>Decals or overlays project onto the wrong surface<b>+</b></summary><p>Check the source placement and receiver. Deferred-decal UV correction is fixed at 180°, Flip U on and Flip V off. Mesh Overlay uses source UV0; keep Projection Depth just large enough to reach the intended receiver. Hide original overlay cards when comparing the flattened result.</p></details><details><summary>Height Blend removes too much decal or overlay detail<b>+</b></summary><p>Compare with Height Blend disabled, then reduce the source’s Strength or Contrast. Decals and overlays have independent controls and require Displacement. Strong blending can suppress coverage on raised surfaces.</p></details><details><summary>ORM, normal backgrounds or opacity look wrong<b>+</b></summary><p>ORM uses Linear sampling: R = AO, G = Roughness, B = Metallic. Black unused normal pixels are intentional; generated materials decode them as a flat normal. For opacity, use the source Opacity Mask input. RGBA stores it in Albedo alpha; Mask Threshold 0 preserves grayscale. Rebake with Auto Material after changing graph options.</p></details><details><summary>Emissive objects do not illuminate nearby baked surfaces<b>+</b></summary><p>Use + Postprocess or Rendered Scene with working scene GI. Light and Shadows and CPU fallback exclude emissive GI. Existing Baked Lightmap includes only emission already in the saved Lightmass bake. The Emissive pass alone records the emitting material, not nearby illumination.</p></details><details><summary>Existing Baked Lightmap is black or patchy<b>+</b></summary><p>Build and save Lightmass lighting. Check the mesh lightmap coordinate channel, valid islands, padding and resolution. This mode reads saved Lightmass data, not Lumen lighting.</p></details><details><summary>GLB is missing a pass or its textures look compressed<b>+</b></summary><p>GLB does not represent every baked pass or Unreal-specific material feature. Keep separately baked textures for unsupported inputs. Disable Export JPG for lossless texture images, or lower Compression to raise JPEG Quality. Displacement textures and Nanite tessellation are not exported as GLB displacement.</p></details><details><summary>Displacement instance controls are missing<b>+</b></summary><p>Select Displacement and enable Auto Material, then rebake. The generated instance exposes Height_min, Height_max, Height_Contrast and S_DisplacementStrength. Effective source-instance Magnitude, Center, tessellation and fade settings are retained. See <a href="#displacement-details">instance controls</a>.</p></details><details><summary>A preset cannot resolve an asset<b>+</b></summary><p>Open the matching level and reload the preset. Missing references warn while valid settings still load; replace unresolved selections. Invalid or unsupported settings leave the current setup unchanged.</p></details><details><summary>Rendered Scene rejects a receiver<b>+</b></summary><p>Inspect logged receiver, occluder, geometry and displacement details. Strict receiver validation can reject unreliable surfaces. Test the affected mesh in isolation before repeating the full batch.</p></details></div>
+</section>
 
-    <footer><div class="brand"><span class="logo">S</span><span><b>SPA Material Baker V3</b><small>Complex material baking for Unreal Engine</small></span></div><div><a href="https://www.fab.com/sellers/Ali%20Shantia(Sepinood)">Fab Store ↗</a><a href="https://www.youtube.com/playlist?list=PLhqUhIN0UwzmjTkehp6K2BppBabcJlAAS">Tutorials ↗</a><a href="#top">Back to top ↑</a></div><p>Created by Ali Shantia (Sepinood). This guide reflects the V3 interface and current plugin behavior.</p></footer>
+<section class="section" id="use-cases"><header class="export-section-heading"><h2>What is SPA Materials Baker useful for?</h2></header><p class="use-case-lead">Turn complex material and scene setups into reusable texture-based assets.</p><div class="use-case-grid">
+<article><h3>VR experiences</h3><p>Bake lighting, decals and overlays into textures for environments with fixed lighting. Reduce reliance on layered materials and separate projection sources in the delivered scene.</p></article>
+<article><h3>Mobile projects</h3><p>Prepare simpler texture-based materials and atlases. Choose output resolution and passes for your target device, then profile the finished scene.</p></article>
+<article><h3>Material optimization</h3><p>Flatten procedural material evaluation, combine material slots, and pack AO, Roughness and Metallic into ORM. Use UV Builder when a new mesh with one material slot is appropriate.</p></article>
+<article><h3>Static environment lighting</h3><p>Capture scene lighting and shadows for reusable props, rooms and environment pieces. Choose Unlit for captured appearance or a lit material when live lighting must still contribute.</p></article>
+<article><h3>Decal and overlay consolidation</h3><p>Bake graffiti, dirt and compatible mesh cards into receiver textures, with independent Height Blend controls. Remove the original projection sources from the final setup after checking the result.</p></article>
+<article><h3>Asset export and handoff</h3><p>Deliver baked textures, generated Unreal materials and selected-mesh GLB exports. Keep separate texture assets for passes and Unreal features that GLB does not represent.</p></article>
+</div><p class="use-case-note">SPA Materials Baker runs in the Unreal Editor to prepare assets. Performance depends on the resulting materials, texture memory, geometry and target hardware. Captured lighting and reflections are fixed; they do not update with moving lights or viewpoints.</p></section>
+    <footer><div class="brand"><span><b>SPA Materials Baker V3.1</b><small>Materials, lighting and scene assets for Unreal Engine</small></span></div><div><a href="https://www.fab.com/sellers/Ali%20Shantia(Sepinood)">Fab Store ↗</a><a href="https://www.youtube.com/playlist?list=PLhqUhIN0UwzmjTkehp6K2BppBabcJlAAS">Tutorials ↗</a><a href="#top">Back to top ↑</a></div><p>Created by Ali Shantia (Sepinood). Updated 3 November 2026 for the current V3.1 source on Unreal Engine 5.6, 5.7 and 5.8. Written controls describe the current build.</p></footer>
   </main>
+
+<dialog class="screenshot-dialog" aria-labelledby="screenshot-title"><div class="screenshot-dialog-toolbar"><h2 id="screenshot-title">Tool screenshot</h2><button type="button" class="screenshot-close" aria-label="Close screenshot">Close <span aria-hidden="true">&times;</span></button></div><img alt=""></dialog>
   <script src="script.js"></script>
 </body>
 </html>
